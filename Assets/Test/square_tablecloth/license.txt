@@ -1,0 +1,11 @@
+Model Information:
+* title:	Square Tablecloth
+* source:	https://sketchfab.com/3d-models/square-tablecloth-0ed1f9966ace41558d1dd1f6f2fc9a85
+* author:	tableclothlinen (https://sketchfab.com/tableclothlinen)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Square Tablecloth" (https://sketchfab.com/3d-models/square-tablecloth-0ed1f9966ace41558d1dd1f6f2fc9a85) by tableclothlinen (https://sketchfab.com/tableclothlinen) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
