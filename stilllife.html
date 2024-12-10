@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>A-Frame Scene with Movement</title>
-    <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
+    <script src="https://aframe.io/releases/1.6.0/aframe.min.js"></script>
     
 
 
@@ -17,21 +17,23 @@
       <a-assets>
      
         <a-asset-item id="sink" src="/Assets/Vivienne Westwood Still Life/sink.glb" ></a-asset-item>
-        <a-asset-item id="water" src="/Assets/Vivienne Westwood Still Life/need_some_space.glb" ></a-asset-item>
-        <a-asset-item id="jewelry" src="/Assets/Vivienne Westwood Still Life/11_5_2024.glb" ></a-asset-item>      
+        <a-asset-item id="water" src="/Assets/Vivienne Westwood Still Life/small_flat_cube_of_water.glb" ></a-asset-item>
+        <a-asset-item id="jewelry" src="/Assets/Vivienne Westwood Still Life/jewelry.glb" ></a-asset-item>      
 
         <img id="ground" src="Assets/Test/Checkerboard.jpg">
+        <img id="example" src="Assets/Vivienne Westwood Still Life/helene.jpg">
+        <img id="pngwater" src="Assets/Vivienne Westwood Still Life/water.png">
 
       </a-assets>
 <!-- SCENE -->
 
-
+<a-image src="#example" position="35 10 0" rotation="0 -15 0" width="30" height="40"></a-image>
  <!-- LIGHT  -->
   <!-- LIGHT <a-light type="directional" color="#FFFFFF" intensity="0.5" position="0 0 5" rotation="0 0 180"></a-light>
 
  <a-light type="point" color="#FFFFFF" intensity="2" distance="100" position="0 0 -25"></a-light>  
 -->
- <a-light type="spot" color="#FFFFFF" intensity="0.8" position="-100 4 30" angle="50" penumbra="2" rotation="0 0 180"></a-light>
+ <a-light type="spot" color="#FFFFFF" intensity="0.2" position="-100 4 30" angle="50" penumbra="2" rotation="0 0 180"></a-light>
  
 
  <a-light type="ambient" color="#FFFFFF" intensity="1.3"></a-light>
@@ -39,16 +41,17 @@
 
             <a-entity gltf-model="#sink" scale="110 110 110" position="63 0 -120" rotation="2 90 90" 
                       material="metalness: 0.1; roughness: 0.8"></a-entity> 
-   <!-- SECOND SET 0.3 0.6 0.35  -->
+
            <a-entity gltf-model="#sink" scale="110 110 110" position="-30 0 -130" rotation="2 90 90" 
                       material="metalness: 0.1; roughness: 0.8"></a-entity> 
           
-           <a-entity gltf-model="#water" scale="200 200 200" position="-100 0 -48" rotation="2 90 90" 
+           <a-entity gltf-model="#water" scale="0.3 0.6 0.35 " position="-100 0 -48" rotation="2 90 90"  material="transparent: true"
                      ></a-entity> 
 
 
+                     <a-image src="#pngwater" position="35 10 0" rotation="0 -10 0" width="30" height="40" ></a-image>
 
-            <a-entity gltf-model="#jewelry" scale="70 70 70" position="0 0 -60" rotation="70 90 90" 
+            <a-entity gltf-model="#jewelry" scale="50 50 50" position="-8 -1 -40" rotation="90 90 90" 
             material="metalness: 0.1; roughness: 0.8"></a-entity> 
             <!-- Textured plane parallel to ground. -->
          sa

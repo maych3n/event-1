@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>A-Frame Scene with Movement</title>
+    <script src="https://aframe.io/releases/1.6.0/aframe.min.js"></script>
+    
+
+
+    
+</head>
+<body>
+    <a-scene>
+      
+      <a-assets>
+     
+        <img id="white cover" src="./Assets/junyarunway/JUNYACOVER.png">
+        <img id="red cover" src="./Assets/junyarunway/JUNYARED.png">
+      <a-asset-item id="runway" src="./Assets/junyarunway/updaterunway.glb" ></a-asset-item> 
+       
+
+
+      </a-assets>
+<!-- SCENE -->
+
+<a-image src="#white cover" position="0 10 10" rotation="0 0 0" width="60" height="40"></a-image>
+
+<a-gltf-model src="#runway" scale= "1 1 1" position="0 0 0" rotation="0 270 0" 
+material="metalness: 0.1; roughness: 0.8"></a-gltf-model>
+
+
+      <!-- TABLE  -->
+
+
+
+
+         
+           <a-sky color="#000s"></a-sky>
+
+ <!-- Camera with WASD and custom Y-axis controls -->
+ <a-camera position="0 7 25" wasd-controls look-controls vertical-move="speed: 0.1"></a-camera>
+    </a-scene>
+</body>
+</html>
