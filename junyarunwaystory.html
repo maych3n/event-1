@@ -25,9 +25,9 @@
     object3D.rotation.z = 0;
   }
 });
-   
+
   </script>
-    
+        <link rel="stylesheet" href="junya.css">
 </head>
 <body>
     <a-scene>
@@ -99,16 +99,16 @@
 
 
 <a-text  position="-6dw 28 3"  wrap-count="45" color="#000" width="93"  rotation="5 5 -2"anchor="center" baseline="top" value="Autumn/Winter 1993"></a-text>
-<a-text  position="-43 24.5 4"  wrap-count="45" color="#000" width="20"  rotation="5 5 0"anchor="center" baseline="top"
+<a-text  position="-43 24.5 4"  wrap-count="45" color="#000" width="20"  rotation="5 5 0"anchor="center" baseline="top" font="https://cdn.aframe.io/fonts/Roboto-msdf.json"
   value="Taque Hirakawa, fashion journalist: Junya Watanabe is one of the few truly artisanal pattern-cutting designers; he knows how to combine confidence, insecurity and reality with the intense labour of creating exactly what he wants to design.
 
-  Dr Sanae Kosugi, Watanabe’s teacher at Bunka Fashion College: At Bunka, Junya would dedicate every moment he had to studying. I could immediately tell that he was someone whose mastery of technique meant he could express his design ideas in clothing. In fact, the designs and sketches that he did were so accomplished that they were always stolen and copied by other students in the class.
+  Dr Sanae Kosugi, Watanabe's teacher at Bunka Fashion College: At Bunka, Junya would dedicate every moment he had to studying. I could immediately tell that he was someone whose mastery of technique meant he could express his design ideas in clothing. In fact, the designs and sketches that he did were so accomplished that they were always stolen and copied by other students in the class.
   
-  Terry Jones, founder, i-D: From the very start Junya had a very respectful approach to creating new silhouettes that I am sure he inherited from Rei Kawakubo. You didn’t get a sense that he ever trod on her toes or tried to do what she did, though.
+  Terry Jones, founder, i-D: From the very start Junya had a very respectful approach to creating new silhouettes that I am sure he inherited from Rei Kawakubo. You didn't get a sense that he ever trod on her toes or tried to do what she did, though.
   
-  Taque Hirakawa: Junya subtly incorporated Japanese pop and street culture into the overall brand world of Comme des Garçons. He then skilfully blended that same culture into his own vision of the world and made use of the differences between the two. The basis of how he differed from Rei Kawakubo was that he learned what Rei could not do. Aware of his own difference he made artisanal clothes under Rei Kawakubo, while creating a reality that allowed for sufficient ‘pattern-making’. The collection that I remember most and would like to see again is his debut collection for Autumn/Winter 1992, the one he presented in Tokyo before showing in Paris.
+  Taque Hirakawa: Junya subtly incorporated Japanese pop and street culture into the overall brand world of Comme des Garçons. He then skilfully blended that same culture into his own vision of the world and made use of the differences between the two. The basis of how he differed from Rei Kawakubo was that he learned what Rei could not do. Aware of his own difference he made artisanal clothes under Rei Kawakubo, while creating a reality that allowed for sufficient 'pattern-making'. The collection that I remember most and would like to see again is his debut collection for Autumn/Winter 1992, the one he presented in Tokyo before showing in Paris.
 
-  Tim Blanks, editor-at-large, The Business of Fashion: I don’t know how many years he was a pattern cutter for Comme des Garçons before starting his own label, but it must have been an education in how to make the unworkable workable." 
+  Tim Blanks, editor-at-large, The Business of Fashion: I don't know how many years he was a pattern cutter for Comme des Garçons before starting his own label, but it must have been an education in how to make the unworkable workable." 
 
 ></a-text>
 
@@ -128,7 +128,7 @@ material="shader: flat">
 <a-image src="#b2" position="-15 10 -39" rotation="-2 0 0" width="20" height="30" billboard></a-image>
 <a-image src="#b1" position="-15 10 -38" rotation="-2 0 0" width="20" height="30" billboard></a-image>
 
-<a-text  position="-38 25.5 -38" wrap-count="45"
+<a-text  position="-38 25.5 -38" wrap-count="45" font="https://cdn.aframe.io/fonts/Roboto-msdf.json"
   value="Taque Hirakawa: I’ve always thought that it was probably in 2000 that Junya started to show the world his skills to the fullest.
 
   Tim Blanks: I’ve read that he admired Pierre Cardin and Issey Miyake. If you strip out whatever the fabrics are and whatever is going on at a surface level, there is something not looked enough: Junya is a quintessential modernist. His attitude is all about combining things and hybridizing all these different elements and bringing together Japanese tradition and Western influences. I also read that he describes his work as monzukuri, which means manufacturing or making things. That is how Issey described his work, too. If he was ever asked what he did, he said that he ‘made things’. That’s what Junya does as well, he makes things.
@@ -207,5 +207,38 @@ material="shader: flat">
  <!-- Camera with WASD and custom Y-axis controls -->
  <a-camera position="-10 7 35" wasd-controls look-controls vertical-move="speed: 0.1"></a-camera>
     </a-scene>
+    <img
+    class="overlay"
+    src="Assets/LogoThesis.png"
+    width="90"
+    height="90"
+    alt="Menu"
+    onclick="toggleSidebar()"
+  />
+  <img
+  class="header"
+  src="Assets/Junya Runway Story/junyaheader.png"
+  width="1600"
+
+  alt="Menu"
+  onclick="toggleSidebar()"
+/>
+
+<!-- Sidebar -->
+<div class="sidebar" id="sidebar">
+<div class="sidebar-content">
+  <span class="close-btn" onclick="toggleSidebar()">✖</span>
+  <h2>Sidebar Content</h2>
+  <p>This is some content inside the sidebar.</p>
+</div>
+</div>
+
+<script>
+// Function to toggle the sidebar
+function toggleSidebar() {
+  const sidebar = document.getElementById('sidebar');
+  sidebar.classList.toggle('open');
+}
+</script>
 </body>
 </html>

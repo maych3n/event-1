@@ -1,0 +1,53 @@
+/* Reset body styles */
+body {
+    margin: 0;
+    overflow: hidden;
+  }
+  
+  /* PNG button styles */
+  .overlay {
+    position: fixed;
+    top: 4px;
+    left: 8px; /* Stays on the left */
+    z-index: 1001; /* Above the sidebar */
+    cursor: pointer; /* Make it look clickable */
+    transition: filter 0.3s ease; /* Smooth shadow effect */
+  }
+  
+  /* Shadow on hover for PNG */
+  .overlay:hover {
+    filter: drop-shadow(4px 4px 10px rgba(0, 0, 0, 0.3)); /* Shadow around the transparent PNG */
+  }
+  
+
+
+  /* Sidebar styles */
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: -300px; /* Hidden off-screen initially */
+    width: 300px;
+    height: 100%;
+    background-color: #f4f4f4;
+    border-right: 1.5px solid black;
+    overflow-y: auto;
+    transition: left 0.3s ease; /* Smooth transition for opening/closing */
+    z-index: 1000; /* Behind the PNG button */
+  }
+  
+  .sidebar.open {
+    left: 0; /* Bring sidebar into view */
+  }
+  
+  .sidebar-content {
+    padding: 20px;
+    margin-top: 80px; /* Space for the PNG button */
+  }
+  
+  .close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 20px;
+    cursor: pointer;
+  }

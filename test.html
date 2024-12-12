@@ -14,17 +14,17 @@
     <a-scene>
       <a-assets>
   
-        <a-asset-item id="table" src="/Assets/Test/tablecloth_lowpoly.glb" ></a-asset-item>
-        <a-asset-item id="guest" src="/Assets/Test/10_24_2024.glb" ></a-asset-item>
-        <a-asset-item id="cake" src="/Assets/Test/Lilac Cake by windowsill bakery.glb" ></a-asset-item>
-        <a-asset-item id="turkey" src="/Assets/Test/Fakesgiving Turkey.glb" ></a-asset-item>
-        <a-asset-item id="candle" src="/Assets/Test/black_candle_holder.glb" ></a-asset-item>
-        <a-asset-item id="tower" src="/Assets/Test/Mâm ngũ quả ở đền thờ Mẫu.glb" ></a-asset-item>
+        <a-asset-item id="table" src="/Assets/Test/compressed_tablecloth.glb" ></a-asset-item>
+        <a-asset-item id="guest" src="/Assets/Test/compressed_man.glb" ></a-asset-item>
+        <a-asset-item id="cake" src="/Assets/Test/compressed_liliccake.glb" ></a-asset-item>
+        <a-asset-item id="turkey" src="/Assets/Test/compressed_turkey.glb" ></a-asset-item>
+        <a-asset-item id="candle" src="/Assets/Test/compressed_candle.glb" ></a-asset-item>
+        <a-asset-item id="tower" src="/Assets/Test/compressed_fruit.glb" ></a-asset-item>
 
-        <img id="ground" src="Assets/Test/Checkerboard.jpg">
-        <img id="wall" src="Assets/Test/ballroom walls.png">
-        <img id="curtain" src="Assets/Test/black curtains 1.png"> 
-        <img id="ceiling" src="Assets/Test/ceiling.png">
+        <img id="ground" src="Assets/Test/checkerboard.png">
+        <img id="wall" src="Assets/Test/ballroomwall.png">
+        <img id="curtain" src="Assets/Test/blackcurtain.png"> 
+        <img id="ceiling" src="Assets/Test/ceiling1.png">
    
  
 
@@ -33,10 +33,10 @@
 
          
         
-          <a-image src="#curtain" position="25 12 0" rotation="0 90 0" width="50" height="24"></a-image>
-          <a-image src="#wall" position="0 12 -25" width="50" height="24"></a-image>
-          <a-image src="#curtain" position="-25 12 0" rotation="0 90 0" width="50" height="24"></a-image>
-          <a-image src="#wall" position="0 12 25" width="50" height="24"></a-image>
+          <a-image src="#curtain" position="25 11.5 0" rotation="0 90 0" width="50" height="24"></a-image>
+          <a-image src="#wall" position="0 11.5 -25" width="50" height="24"></a-image>
+          <a-image src="#curtain" position="-25 11.5 0" rotation="0 90 0" width="50" height="24"></a-image>
+          <a-image src="#wall" position="0 11.5 25" width="50" height="24"></a-image>
           <a-image src="#ceiling"  position="0 24 0" height="50" width="50" rotation="-90 0 0" material="src: #ceiling; repeat: 2 2 ;"></a-image>
 
 
@@ -49,8 +49,8 @@
                       material="metalness: 0.1; roughness: 0.8"></a-entity>
           
 
-            <a-entity gltf-model="#guest" scale="5 5 5" position="10 2.1 1" rotation="0 90 0"></a-entity> 
-            <a-entity gltf-model="#guest" scale="5 5 5" position="-10 2.1 1" rotation="0 -90 0"></a-entity> 
+            <a-entity gltf-model="#guest" scale="5 5 5" position="10 1.6 1" rotation="0 90 0"></a-entity> 
+            <a-entity gltf-model="#guest" scale="5 5 5" position="-10 1.6 1" rotation="0 -90 0"></a-entity> 
 
             <a-entity gltf-model="#cake" scale="3.5 3.5 3.5" position="-6 2.7 0" 
                       material="metalness: 0.1; roughness: 0.8"></a-entity> 
@@ -69,7 +69,7 @@
 
 
             <!-- Textured plane parallel to ground. -->
-           <a-plane src="#ground" height="50" width="50" rotation="-90 0 0" material="src: #ground; repeat: 2 2 ;"> </a-plane>
+           <a-plane src="#ground" height="50" width="50" rotation="-90 0 0" material="src: #ground; repeat: 2 2 ;" position="0 -1 0"> </a-plane>
 
 
 

@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>A-Frame Scene with Movement</title>
     <script src="https://aframe.io/releases/1.6.0/aframe.min.js"></script>
-    
+    <link rel="stylesheet" href="junya.css">
 
 
     
@@ -18,7 +18,7 @@
      
         <img id="white cover" src="./Assets/junyarunway/JUNYACOVER.png">
         <img id="red cover" src="./Assets/junyarunway/JUNYARED.png">
-      <a-asset-item id="runway" src="./Assets/junyarunway/updaterunway.glb" ></a-asset-item> 
+      <a-asset-item id="runway" src="./Assets/junyarunway/compressed_runway.glb" ></a-asset-item> 
        
 
 
@@ -37,10 +37,34 @@ material="metalness: 0.1; roughness: 0.8"></a-gltf-model>
 
 
          
-           <a-sky color="#000s"></a-sky>
+           <a-sky color="#FFF"></a-sky>
 
  <!-- Camera with WASD and custom Y-axis controls -->
  <a-camera position="0 7 25" wasd-controls look-controls vertical-move="speed: 0.1"></a-camera>
     </a-scene>
+    <img
+    class="overlay"
+    src="Assets/LogoThesis.png"
+    width="90"
+    height="90"
+    alt="Menu"
+    onclick="toggleSidebar()"
+  />
+<!-- Sidebar -->
+<div class="sidebar" id="sidebar">
+<div class="sidebar-content">
+  <span class="close-btn" onclick="toggleSidebar()">✖</span>
+  <h2>Sidebar Content</h2>
+  <p>This is some content inside the sidebar.</p>
+</div>
+</div>
+
+<script>
+// Function to toggle the sidebar
+function toggleSidebar() {
+  const sidebar = document.getElementById('sidebar');
+  sidebar.classList.toggle('open');
+}
+</script>
 </body>
 </html>

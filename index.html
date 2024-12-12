@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge"> /* Ensures compatibility with Internet Explorer. */
     <title>My Website</title>
     <!-- Link to external CSS file -->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="stilllife.css">
     <!-- Add any other meta tags or favicon here -->
 </head>
 <body>
@@ -18,7 +18,10 @@
         <section>
             <h2>About This Website</h2>
             <p>This is a simple website I am setting up using GitHub Pages.</p>
-            <a href="test.html">Go to Test Page</a>
+            <a href="test.html">Marc Jacobs and Chat GPT</a>
+            <a href="stilllife.html">Vivienne Westwood</a>
+            <a href="junyarunway.html">Junya Cover</a>
+            <a href="junyarunwaystory.html">Junya Runway</a>
         </section>
 
         <section>
@@ -26,6 +29,29 @@
             <p>Here, I will showcase some of my projects.</p>
         </section>
     </main>
+    <img
+    class="overlay"
+    src="Assets/LogoThesis.png"
+    width="90"
+    height="90"
+    alt="Menu"
+    onclick="toggleSidebar()"
+  />
+<!-- Sidebar -->
+<div class="sidebar" id="sidebar">
+<div class="sidebar-content">
+  <span class="close-btn" onclick="toggleSidebar()">✖</span>
+  <h2>Sidebar Content</h2>
+  <p>This is some content inside the sidebar.</p>
+</div>
+</div>
 
+<script>
+// Function to toggle the sidebar
+function toggleSidebar() {
+  const sidebar = document.getElementById('sidebar');
+  sidebar.classList.toggle('open');
+}
+</script>
 </body>
 </html>
