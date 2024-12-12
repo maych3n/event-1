@@ -6,6 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>A-Frame Scene with Movement</title>
     <script src="https://aframe.io/releases/1.6.0/aframe.min.js"></script>
+    <link rel="stylesheet" href="junya.css">
+    <script src="scripts.js" defer></script>
     <script>
       // Custom billboard component
       AFRAME.registerComponent('billboard', {
@@ -205,7 +207,7 @@ material="shader: flat">
            <a-sky color="#FFF"></a-sky>
   
  <!-- Camera with WASD and custom Y-axis controls -->
- <a-camera position="-10 7 35" wasd-controls look-controls vertical-move="speed: 0.1"></a-camera>
+ <a-camera position="-10 9 45" wasd-controls look-controls vertical-move="speed: 0.1"></a-camera>
     </a-scene>
     <img
     class="overlay"
@@ -240,5 +242,9 @@ function toggleSidebar() {
   sidebar.classList.toggle('open');
 }
 </script>
+
+<button class="next-button" onclick="window.location.href='endpage.html';"></button>
+<button class="back-button" onclick="window.location.href='junyarunwaystory.html';"></button>
+
 </body>
 </html>

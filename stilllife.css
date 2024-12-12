@@ -51,3 +51,48 @@ body {
     font-size: 20px;
     cursor: pointer;
   }
+
+   /* NEXT button styles */
+   .next-button {
+    position: fixed;
+    top: 17px; /* Distance from the top */
+    right: 20px; /* Distance from the right */
+    z-index: 1001; /* Ensure it's above the A-Frame scene */
+    cursor: pointer; /* Make it look clickable */
+    width: 80px; /* Adjust size as needed */
+    height: 80px;
+    background-image: url('Assets/next-reg.png'); /* Default PNG */
+    background-size: contain; /* Ensure the image fits the button size */
+    background-repeat: no-repeat;
+    border: none; /* Remove border */
+    background-color: transparent; /* Ensure no background color */
+    transition: background-image 0.3s ease; /* Smooth hover effect */
+  }
+
+  /* Hover effect */
+  .next-button:hover {
+    background-image: url('Assets/next-hover.png'); /* Hover PNG */
+  }
+
+      /* BACK button styles */
+
+  .back-button {
+    position: fixed;
+    top: 17px; /* Distance from the top */
+    right: 110px; /* Distance from the right */
+    z-index: 1001; /* Ensure it's above the A-Frame scene */
+    cursor: pointer; /* Make it look clickable */
+    width: 80px; /* Adjust size as needed */
+    height: 80px;
+    background-image: url('Assets/back-reg.png'); /* Default PNG */
+    background-size: contain; /* Ensure the image fits the button size */
+    background-repeat: no-repeat;
+    border: none; /* Remove border */
+    background-color: transparent; /* Ensure no background color */
+    transition: background-image 0.3s ease; /* Smooth hover effect */
+  }
+
+  /* Hover effect */
+  .back-button:hover {
+    background-image: url('Assets/back-hover.png'); /* Hover PNG */
+  }
