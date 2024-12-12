@@ -7,7 +7,7 @@
     <title>A-Frame Scene with Movement</title>
     <script src="https://aframe.io/releases/1.6.0/aframe.min.js"></script>
     <link rel="stylesheet" href="junya.css">
-
+    <script src="scripts.js" defer></script>
 
     
 </head>
@@ -16,8 +16,7 @@
       
       <a-assets>
      
-        <img id="white cover" src="./Assets/junyarunway/JUNYACOVER.png">
-        <img id="red cover" src="./Assets/junyarunway/JUNYARED.png">
+        <img id="white cover" src="./Assets/junyarunway/runwaycover.png">
       <a-asset-item id="runway" src="./Assets/junyarunway/compressed_runway.glb" ></a-asset-item> 
        
 
@@ -29,12 +28,6 @@
 
 <a-gltf-model src="#runway" scale= "1 1 1" position="0 0 0" rotation="0 270 0" 
 material="metalness: 0.1; roughness: 0.8"></a-gltf-model>
-
-
-      <!-- TABLE  -->
-
-
-
 
          
            <a-sky color="#FFF"></a-sky>
@@ -58,13 +51,8 @@ material="metalness: 0.1; roughness: 0.8"></a-gltf-model>
   <p>This is some content inside the sidebar.</p>
 </div>
 </div>
+<button class="next-button" onclick="window.location.href='junyarunwaystory.html';"></button>
+<button class="back-button" onclick="window.location.href='test.html';"></button>
 
-<script>
-// Function to toggle the sidebar
-function toggleSidebar() {
-  const sidebar = document.getElementById('sidebar');
-  sidebar.classList.toggle('open');
-}
-</script>
 </body>
 </html>
