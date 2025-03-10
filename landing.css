@@ -1,0 +1,139 @@
+ /* Image Wrap Test */
+/* Image Wrap Test */
+.text-wrap {
+    position: relative;    /* Needed for overflow to work properly */
+    padding: 0px;
+
+  
+}
+
+.overflow-image {
+    float: left;            /* Allows text to wrap around the image */
+    margin-left: -130px;     /* Negative margin for leftward overflow */
+    margin-right: 15px;
+    margin-bottom: 10px;    /* Space between text and image */
+    margin-top: 15px;
+    max-width: 24vw;        /* Allows image to overflow horizontally */
+}
+
+.float-left {
+    float: left;            /* Floats the image to the left */
+    margin: 0 15px 15px 0;  /* Adds space around the image */
+    max-width: 10vw;        /* Prevents image from being too wide */
+}
+
+.float-right {
+    float: right;       /* Floats the image to the right */
+    margin: 0 0 15px 15px;  /* Adds space around the image */
+    max-width: 40%;     /* Prevents image from being too wide */
+}
+    
+    
+    /* Common styles for images */
+      .overlay {
+        position: fixed;
+        width: 400px;
+        height: auto;
+        z-index: 5; /* Below scroll text but above A-Frame scene */
+        pointer-events: none; /* Allow interactions to pass through to A-Frame */
+    }
+
+    /* Position each image individually */
+    #image1 {
+        top: 30px;
+        right: 50px;
+    }
+
+    #image2 {
+        top: 130px;
+        left: 45px;
+    }
+
+    #image3 {
+        top: 600px;
+        left: 55%;
+    }
+
+    /* Scrollable text container */
+    .scroll-container {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100vw; /* Full screen width */
+        height: 200vh; /* Extra height for scrolling */
+        z-index: 10; /* Above images and A-Frame scene */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        pointer-events: none; /* Allow interactions to pass through to A-Frame */
+    }
+
+    .scroll-text {
+        position: absolute;
+        top: 100vh; /* Hidden initially, revealed on scroll */
+        max-width: 100vw; /* Limit text width for readability */
+        padding-left: 25vw;
+        padding-right: 25vw;
+        padding-top:0px;
+        background: rgba(255, 255, 255, 1); /* Full opacity */
+        color: #000;
+        font-size: 16pt;
+        line-height: 1.6;
+        text-align: left;
+        margin: 0 auto; /* Center the text */
+        pointer-events: none; /* Allow interactions to pass through to A-Frame */
+
+        font-family: "neue-haas-unica", sans-serif;
+        font-weight: 400;
+        font-style: normal;
+    }
+
+    .large-title {
+        font-size: 64pt;
+        font-family: "neue-haas-unica", sans-serif;
+        font-weight: 400;
+        font-style: normal;
+        text-align: center;
+           margin-top: 10vh;          /* Remove default margin */
+    padding: 0; 
+    }
+
+
+    .scroll-text p {
+        margin-bottom: 20px; /* Space between paragraphs */
+    }
+
+    p {
+        text-indent: 2em; /* Indents the first line by 2em (adjust as needed) */
+    }
+    
+
+    /* A-Frame scene styling */
+    a-scene {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1; /* Below images and text */
+        pointer-events: auto; /* Allow interactions for A-Frame scene */
+    }
+
+    body, html {
+        margin: 0;
+        overflow-x: hidden;
+    }
+
+    .progress-bar {
+      height:100vh;
+      width: 50px;
+      background-color: aqua;
+      position: fixed;
+      top: 20px;
+      z-index: 11;
+      transform: scale(1, 0.4);
+      transform-origin: bottom;
+
+    }
+
+    
