@@ -1,4 +1,41 @@
- /* Image Wrap Test */
+/* Top Bar */
+.top-menu-bar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 45px;
+    background-color: #DCF2FF; /* Light blue color */
+    display: flex;
+    align-items: center;
+    z-index: 10; /* Ensures it stays above the A-Frame scene */
+    box-sizing: border-box;
+
+}
+
+.menu-button {
+    background: none;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-family: "neue-haas-unica", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 14pt;
+    color: #000;
+}
+
+.menu-button:hover {
+    background-color: #AADEFF; /* Slightly darker blue on hover */
+}
+
+.divider {
+    width: 2px;
+    height: 45px;
+    background-color: #000;
+    margin: 0 10px;
+}
+
+/* Image Wrap Test */
 /* Image Wrap Test */
 .text-wrap {
     position: relative;    /* Needed for overflow to work properly */
@@ -61,7 +98,7 @@
         left: 0;
         width: 100vw; /* Full screen width */
         height: 200vh; /* Extra height for scrolling */
-        z-index: 10; /* Above images and A-Frame scene */
+        z-index: 8; /* Above images and A-Frame scene */
         display: flex;
         align-items: center;
         justify-content: center;
@@ -103,10 +140,6 @@
         margin-bottom: 20px; /* Space between paragraphs */
     }
 
-    p {
-        text-indent: 2em; /* Indents the first line by 2em (adjust as needed) */
-    }
-    
 
     /* A-Frame scene styling */
     a-scene {
@@ -130,7 +163,7 @@
       background-color: aqua;
       position: fixed;
       top: 20px;
-      z-index: 11;
+      z-index: 9;
       transform: scale(1, 0.4);
       transform-origin: bottom;
 
