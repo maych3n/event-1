@@ -1,3 +1,65 @@
+.z-indicator {
+  position: fixed;
+  top: 6vh; /* Below the title line */
+  left: 2vw; /* Align to the left */
+  font-size: 2vh;
+  color: rgb(240, 12, 12);
+  font-family: Arial, sans-serif;
+  font-weight: bold;
+  background: rgba(0, 0, 0, 0.6); /* Semi-transparent background */
+  padding: 0.5vh 1vh;
+  border-radius: 5px;
+  z-index: 1000;
+}
+      
+      
+      
+      /* Fixed title text */
+       .fixed-text {
+        position: fixed;
+        top: 2vh; /* Positioned above the line */
+        right: 2vw;
+        font-size: 3vh;
+        color: white;
+        font-family: "neue-haas-unica", sans-serif;
+        text-align: right;
+        font-weight: 400;
+        font-style: normal;
+        z-index: 1000;
+        padding: 0.5vh 1vh;
+        border-radius: 5px;
+        max-width: 30vw;
+      
+    }
+
+
+           /* Fixed title text */
+           .fixed-left-text {
+            position: fixed;
+            top: 2vh; /* Positioned above the line */
+            left: 2vw;
+            font-size: 3vh;
+            color: white;
+            font-family: "neue-haas-unica", sans-serif;
+            text-align: left;
+            font-weight: 400;
+            font-style: normal;
+            z-index: 1000;
+            padding: 0.5vh 1vh;
+            border-radius: 5px;
+            max-width: 30vw;
+            
+        }
+    /* Fixed white line */
+    .title-line {
+        position: fixed;
+        top: 7vh;
+        left: 2vw;
+        width: calc(100vw - 4vw);
+        height: 2px;
+        background-color: white;
+        z-index: 1000;
+    }
 
 
 body {

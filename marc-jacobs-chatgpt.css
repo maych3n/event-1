@@ -2,10 +2,10 @@
 .sidebar {
     position: fixed;
     top: 0;
-    left: -40vw; /* Hidden off-screen initially */
-    width: 40vw;
+    left: -45vw; /* Hidden off-screen initially */
+    width: 45vw;
     height: 100%;
-    background-color: #f4f4f4;
+    background-color: white;
     overflow-y: auto;
     border-right: 1.5px solid black;
     transition: left 0.3s ease; /* Smooth transition for opening/closing */
@@ -20,7 +20,22 @@
     padding: 20px;
     margin-top: 80px; /* Space for the PNG button */
   }
-  
+
+  h2{
+    font-family: "neue-haas-unica", sans-serif;
+    font-weight: 200;
+    font-style: light;
+    font-size: 30pt;
+    margin-left: calc(1vw + 12px + 0.9 * (100% / 6.1)); /* Approximate .speech-container's left offset */
+  }
+  p{
+    font-family: "neue-haas-unica", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 12pt;
+    color: #737373;
+    margin-left: calc(1vw + 12px + 0.9 * (100% / 6.1)); /* Approximate .speech-container's left offset */
+  }
   .close-btn {
     position: absolute;
     top: 10px;
@@ -35,16 +50,41 @@
          .text-container{
           width: 100%;
          height: auto;
-        background-color: blue;
+         margin-top: 40px;
+        
   
      }
   
         .paragraph-container{
          display: flex;
-         border: 1px solid cyan;
+         margin-left: 1vw;
+         margin-right: 3vw;
+         margin-top: 40px;
   
      }
 
+     .name-container{
+      display: flex;
+      font-family: "neue-haas-unica", sans-serif;
+      font-weight: 400;
+      font-style: normal;
+      font-size: 12pt;
+      color: #737373;
+      margin-right: 12px;
+      justify-content: flex-end;
+      flex: 1; 
+
+  }
+     .speech-container{
+      display: flex;
+      font-family: "neue-haas-unica", sans-serif;
+      font-weight: 400;
+      font-style: normal;
+      font-size: 12pt;
+      color: #000;
+      flex: 5; 
+
+  }
 
   /* PNG button styles */
   .overlay {

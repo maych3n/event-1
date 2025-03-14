@@ -1,0 +1,53 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eigo Cong</title>
+    <script src="https://aframe.io/releases/1.6.0/aframe.min.js"></script>
+    <link rel="stylesheet" href="inspiration.css">
+    <script src="inspiration.js" defer></script>
+
+</head>
+<body>
+
+    <h1>Hover over these words to see different 3D objects:</h1>
+    <p>
+        Hover over <span class="hover-object" data-target="model1">word1</span>,
+        <span class="hover-object" data-target="model2">word2</span>,
+        <span class="hover-object" data-target="model3">word3</span>
+    </p>
+
+    <div id="scene-container">
+        <a-scene embedded>
+            <!-- Add lighting -->
+            <a-light type="ambient" color="#888"></a-light>
+            <a-light type="directional" color="#fff" position="2 4 3"></a-light>
+        
+            <!-- 3D Objects -->
+            <a-entity id="model1" position="0 1 -3" rotation="0 0 0" visible="false"
+                animation="property: rotation; to: 0 360 0; loop: true; dur: 6000">
+                <a-box color="blue"></a-box>
+            </a-entity>
+        
+            <a-entity id="model2" position="0 1 -3" rotation="0 0 0" visible="false"
+                animation="property: rotation; to: 0 360 0; loop: true; dur: 6000">
+                <a-sphere color="red"></a-sphere>
+            </a-entity>
+        
+            <a-entity id="model3" position="0 1 -3" rotation="0 0 0" visible="false"
+                animation="property: rotation; to: 0 360 0; loop: true; dur: 6000">
+                <a-cylinder color="green"></a-cylinder>
+            </a-entity>
+        
+            <a-camera position="0 1.6 0"></a-camera>
+        </a-scene>
+        
+    </div>
+
+   
+
+</body>
+</html>
+
