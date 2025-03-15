@@ -35,7 +35,9 @@
   <div class="fixed-text" id="scene-text"></div>
   <div class="title-line"></div>
   <div class="z-indicator" id="z-indicator">Z: 0</div>
-    <a-scene>
+  <a-scene networked-scene="
+  room: my-public-room;
+  adapter: wseasyrtc;">
       
       <a-assets>
         <img id="text-a" src="Assets/junya-watanabe-runway-archives/junya-text2.png">
