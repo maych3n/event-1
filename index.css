@@ -1,0 +1,70 @@
+
+    /* page styling  */
+
+    
+    body {
+        font-family: 'TT Paplane', sans-serif;
+        font-weight: 400; /* Regular weight */
+        font-variation-settings: 'wght' 400; /* Ensures it displays as regular */
+
+    }
+
+/* Container for the links */
+.link-container {
+    text-align: left; /* Ensures the links stay left-aligned */
+    margin-top: 50px;
+}
+
+/* Style for the links */
+.link-container a {
+    display: block; /* Makes each link appear on a new line */
+    text-decoration: none;
+    color: grey; /* Default color */
+    font-family: 'TT Paplane', sans-serif;
+    font-weight: 400; /* Regular weight */
+    font-variation-settings: 'wght' 400; /* Ensures it displays as regular */
+    font-size: 24px;
+    font-weight: 400;
+    transition: color 0.3s ease;
+    margin-bottom: 10px; /* Adds spacing between links */
+}
+
+/* Hover effect */
+.link-container a:hover {
+    color: yellow; /* Turns yellow on hover */
+}
+
+/* Custom cursor per link */
+.link1:hover {
+    cursor: url('cursor1.png'), auto;
+}
+
+.link2:hover {
+    cursor: url('cursor2.png'), auto;
+}
+
+.link3:hover {
+    cursor: url('cursor3.png'), auto;
+}
+
+.link4:hover {
+    cursor: url('cursor4.png'), auto;
+}
+
+.link5:hover {
+    cursor: url('cursor5.png'), auto;
+}
+
+.link6:hover {
+    cursor: url('cursor6.png'), auto;
+}
+
+    @font-face {
+        font-family: 'TT Paplane';
+        src: url('/Assets/TT-Paplane-Variable.woff2') format('woff2');
+        font-weight: 100 900; /* Assuming it supports a range of weights */
+        font-style: normal;
+        font-display: swap;
+      }
+
+    
