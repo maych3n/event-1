@@ -1,3 +1,11 @@
+@font-face {
+  font-family: 'TT Paplane';
+  src: url('/Assets/TT-Paplane-Variable.woff2') format('woff2');
+  font-weight: 100 900; /* Assuming it supports a range of weights */
+  font-style: normal;
+  font-display: swap;
+}
+
 .z-indicator {
   position: fixed;
   top: 6vh; /* Below the title line */
@@ -21,10 +29,9 @@
         right: 2vw;
         font-size: 3vh;
         color: white;
-        font-family: "neue-haas-unica", sans-serif;
-        text-align: right;
-        font-weight: 400;
-        font-style: normal;
+        font-family: 'TT Paplane', sans-serif;
+        font-weight: 400; /* Regular weight */
+        font-variation-settings: 'wght' 400; /* Ensures it displays as regular */
         z-index: 1000;
         padding: 0.5vh 1vh;
         border-radius: 5px;
@@ -40,14 +47,13 @@
             left: 2vw;
             font-size: 3vh;
             color: white;
-            font-family: "neue-haas-unica", sans-serif;
-            text-align: left;
-            font-weight: 400;
-            font-style: normal;
+            font-family: 'TT Paplane', sans-serif;
+            font-weight: 400; /* Regular weight */
+            font-variation-settings: 'wght' 400; /* Ensures it displays as regular */
             z-index: 1000;
             padding: 0.5vh 1vh;
             border-radius: 5px;
-            max-width: 30vw;
+         
             
         }
     /* Fixed white line */
