@@ -36,20 +36,25 @@
 
 /* Custom cursor per link */
 .link1:hover {
-    cursor: url('cursor1.png'), auto;
+    cursor: url('/Assets/landing/EVENT-cursors-01.cur'), auto;
 }
 
+
 .link2:hover {
-    cursor: url('cursor2.png'), auto;
+    cursor: url('/Assets/landing/EVENT-cursors-04.png'), auto;
 }
 
 .link3:hover {
-    cursor: url('cursor3.png'), auto;
+    cursor: url('../Assets/landing/EVENT-cursors-04.cur'), auto;
+
+
 }
 
 .link4:hover {
-    cursor: url('cursor4.png'), auto;
-}
+        cursor: url('./Assets/landing/EVENT-cursors-01.cur'), auto;
+    }
+    
+
 
 .link5:hover {
     cursor: url('cursor5.png'), auto;
