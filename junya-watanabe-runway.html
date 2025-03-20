@@ -6,6 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Junya Watanabe Runway Archives</title>
     <script src="https://aframe.io/releases/1.6.0/aframe.min.js"></script>
+    <script src="https://unpkg.com/networked-aframe@latest/dist/networked-aframe.min.js"></script>
+
     <link rel="stylesheet" href="junya.css">
     <script src="junya.js" defer></script>
     <script>
@@ -36,10 +38,12 @@
   <div class="title-line"></div>
   <div class="z-indicator" id="z-indicator">Z: 0</div>
   <a-scene networked-scene="
-  room: my-public-room;
-  adapter: wseasyrtc;">
+  room: junyawatanaberunway;         
+  serverURL: /;
+  adapter: wseasy;">
       
       <a-assets>
+        <a-asset-item id="avatarModel" src="Assets/landing/yellow.gltf"></a-asset-item>
         <img id="text-a" src="Assets/junya-watanabe-runway-archives/junya-text-1.png">
         <img id="text-b" src="Assets/junya-watanabe-runway-archives/junya-text-2.png">
         <img id="text-c" src="Assets/junya-watanabe-runway-archives/junya-text-3.png">
@@ -105,6 +109,14 @@
 
       </a-assets>
 <!-- SCENE -->
+<a-entity id="avatar" networked="template:#avatar-template; attachTemplateToLocal:false;">
+</a-entity>
+
+<!-- Avatar Template (What all users see) -->
+<template id="avatar-template">
+    <a-gltf-model src="#avatarModel" scale="5 5 5"></a-gltf-model>
+</template>
+
 <a-entity class="xyz" material="transparent: true" position="0 10 5"></a-entity>
 
 
@@ -190,7 +202,9 @@
            <a-sky color="#000"></a-sky>
   
  <!-- Camera with WASD and custom Y-axis controls -->
- <a-camera position="-10 11 45" wasd-controls look-controls vertical-move="speed: 10"></a-camera>
+ <a-camera position="-10 11 45" wasd-controls look-controls vertical-move="speed: 10"
+ networked="template:#avatar-template;"></a-camera>
+ 
     </a-scene>
   
 

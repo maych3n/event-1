@@ -1,13 +1,10 @@
+/* Page Styling */
+body {
+    font-family: 'TT Paplane', sans-serif;
+    font-weight: 400; /* Regular weight */
+    font-variation-settings: 'wght' 400; /* Ensures it displays as regular */
 
-    /* page styling  */
-
-    
-    body {
-        font-family: 'TT Paplane', sans-serif;
-        font-weight: 400; /* Regular weight */
-        font-variation-settings: 'wght' 400; /* Ensures it displays as regular */
-
-    }
+}
 
 /* Container for the links */
 .link-container {
@@ -23,53 +20,43 @@
     font-family: 'TT Paplane', sans-serif;
     font-weight: 400; /* Regular weight */
     font-variation-settings: 'wght' 400; /* Ensures it displays as regular */
-    font-size: 24px;
-    font-weight: 400;
+    font-size: 72px;
     transition: color 0.3s ease;
     margin-bottom: 10px; /* Adds spacing between links */
+    cursor: none; /* Hides default cursor */
 }
+
 
 /* Hover effect */
 .link-container a:hover {
     color: yellow; /* Turns yellow on hover */
 }
+#custom-cursor {
+    width: 80vw;
+    height: 80vh;
+    background: no-repeat center;
+    background-size: contain;
+    position: absolute;
+    pointer-events: none;
+    z-index: 9999;
+    transform: scale(0) translate(-50%, -50%);
+    transform-origin: center center; /* Ensures it scales from its own center */
+    transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+    opacity: 0;
+}
 
-/* Custom cursor per link */
-.link1:hover {
-    cursor: url('/Assets/landing/EVENT-cursors-01.cur'), auto;
+/* Show cursor with animation */
+#custom-cursor.active {
+    transform: scale(1) translate(-50%, -50%);
+    opacity: 1;
 }
 
 
-.link2:hover {
-    cursor: url('/Assets/landing/EVENT-cursors-04.png'), auto;
+/* Font Import */
+@font-face {
+    font-family: 'TT Paplane';
+    src: url('/Assets/TT-Paplane-Variable.woff2') format('woff2');
+    font-weight: 100 900; /* Assuming it supports a range of weights */
+    font-style: normal;
+    font-display: swap;
 }
-
-.link3:hover {
-    cursor: url('../Assets/landing/EVENT-cursors-04.cur'), auto;
-
-
-}
-
-.link4:hover {
-        cursor: url('./Assets/landing/EVENT-cursors-01.cur'), auto;
-    }
-    
-
-
-.link5:hover {
-    cursor: url('cursor5.png'), auto;
-}
-
-.link6:hover {
-    cursor: url('cursor6.png'), auto;
-}
-
-    @font-face {
-        font-family: 'TT Paplane';
-        src: url('/Assets/TT-Paplane-Variable.woff2') format('woff2');
-        font-weight: 100 900; /* Assuming it supports a range of weights */
-        font-style: normal;
-        font-display: swap;
-      }
-
-    

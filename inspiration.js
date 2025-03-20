@@ -19,3 +19,5 @@ function hideAllModels() {
         model.setAttribute('visible', 'false');
     });
 }
+
+

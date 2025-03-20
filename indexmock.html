@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>EVENT</title>
+    <script src="https://aframe.io/releases/1.6.0/aframe.min.js"></script>
+    <link rel="stylesheet" href="https://use.typekit.net/udj6sje.css">
+    <link rel="stylesheet" href="index.css">
+    <script src="indexmock.js" defer></script>
+    <style>
+  
+    </style>
+</head>
+
+<body>
+
+    <a-scene>
+        <a-assets>
+            <img id="martine1" src="Assets/landing/martine-1.png">
+            <img id="martine2" src="Assets/landing/EVENT-cursors-01.png">
+            <img id="junya1" src="Assets/landing/junya1.png">
+            <img id="junya2" src="Assets/landing/junya-2.png">
+            <img id="marc1" src="Assets/landing/marc-1.png">
+            <img id="gm" src="Assets/landing/gentle-monster.png">
+            <img id="gm1" src="Assets/landing/gm.png">
+          </a-assets>
+
+         <a-box position="-1 0.5 -3" rotation="0 185 0" material="src: #martine2;" hover-spin-rise></a-box>
+         <a-box position="-2.2 0.5 -3" rotation="0 95 0" material="src: #gm;" hover-spin-rise></a-box>
+         <a-box position="0.3 0.5 -3" rotation="0 85 0" material="src: #junya2;" hover-spin-rise></a-box>
+
+<a-box position="0 1.5 -3" rotation="0 85 0" material="src: #martine1;" hover-spin-rise></a-box>
+<a-box position="-1.5 1.5 -3" rotation="0 115 0" material="src: #gm1;" hover-spin-rise></a-box>
+
+<a-box position="-0.75 2.5 -3" rotation="0 85 0" material="src: #marc1;" hover-spin-rise></a-box>
+       
+        <a-plane
+          position="0 0 -4"
+          rotation="-90 0 0"
+          width="4"
+          height="4"
+          color="#000"
+        ></a-plane>
+        <a-sky color="#000"></a-sky>
+      </a-scene>
+    </body>
+
+</html>
