@@ -14,10 +14,9 @@
     
 </head>
 <body>
-
     <img class="overlay-left" src="Assets/gentle-monster/logos-01.png" alt="Overlay Image">
     <img class="overlay-right" src="Assets/gentle-monster/logos-02.png" alt="Overlay Image">
-    <a-scene rotation="0 90 0">
+    <a-scene gltf-model="dracoDecoderPath: https://www.gstatic.com/draco/v1/decoders/" rotation="0 90 0">
       
       <a-assets>
              <a-asset-item id="bea" src="Assets/gentle-monster/bea-with-glasses-compressed.glb" ></a-asset-item> 
@@ -54,7 +53,7 @@
            <a-sky color="#FFFFFF"></a-sky> 
 
            <a-entity id="cameraRig" position="0 8 40" rotation="-5 0 0" animate-camera>
-            <a-camera wasd-controls="acceleration: 20; fly: true;" look-controls></a-camera>
+            <a-camera wasd-controls="acceleration: 10; fly: true;" look-controls></a-camera>
         </a-entity>
 
  <!--  <a-camera position="0 1 2" rotation="180 0 0" wasd-controls look-controls vertical-move="speed: 0.1"></a-camera>
