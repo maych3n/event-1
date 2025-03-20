@@ -9,10 +9,14 @@
     <script src="https://unpkg.com/networked-aframe/dist/networked-aframe.min.js"></script>
     <script src="scripts.js" defer></script>
     <script src="gentle-monster.js" defer></script>
+    <link rel="stylesheet" href="gentle-monster.css">
 
     
 </head>
 <body>
+
+    <img class="overlay-left" src="Assets/gentle-monster/logos-01.png" alt="Overlay Image">
+    <img class="overlay-right" src="Assets/gentle-monster/logos-02.png" alt="Overlay Image">
     <a-scene rotation="0 90 0">
       
       <a-assets>
@@ -31,14 +35,14 @@
       <a-plane 
       position="0 12 -10" 
       rotation="0 0 0" 
-      width="250"
+      width="300"
       height="25" 
       material="shader: flat; src: #back; side: double">
   </a-plane>
   <a-plane 
   position="0 0 3.2" 
   rotation="90 0 0" 
-  width="250"
+  width="300"
   height="25" 
   material="shader: flat; src: #back; side: double">
 </a-plane>
@@ -49,7 +53,7 @@
 
            <a-sky color="#FFFFFF"></a-sky> 
 
-           <a-entity id="cameraRig" position="0 5 40" rotation="0 0 0" animate-camera>
+           <a-entity id="cameraRig" position="0 8 40" rotation="-5 0 0" animate-camera>
             <a-camera wasd-controls="acceleration: 20; fly: true;" look-controls></a-camera>
         </a-entity>
 

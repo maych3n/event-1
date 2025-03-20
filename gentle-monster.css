@@ -1,0 +1,18 @@
+
+/* Style for fixed PNG overlay */
+.overlay-left {
+    position: fixed;
+    top: 58vh;  /* Adjust vertical position */
+    left: 10px; /* Keep 10px padding from left */
+    width: 20vw; /* Adjust size as needed */
+    z-index: 1000; /* Ensure it's above A-Frame scene */
+}
+
+
+.overlay-right {
+    position: fixed;
+    top: 58vh;  /* Adjust vertical position */
+    right: 8px; /* Keep 10px padding from left */
+    width: 20vw; /* Adjust size as needed */
+    z-index: 1000; /* Ensure it's above A-Frame scene */
+}

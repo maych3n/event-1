@@ -6,16 +6,16 @@ AFRAME.registerComponent("animate-camera", {
             // Animate Position
             cameraRig.setAttribute("animation", {
                 property: "position",
-                from: "0 5 40",
-                to: "0 0.5 2.5",
+                from: "0 8 40",
+                to: "-0.35 0.5 2.5",
                 dur: 3000,
                 easing: "easeInOutQuad"
             });
 
-            // Animate Rotation (Y-axis: 0 → 30 degrees)
+            // Animate Rotation (Y-axis: 0 → 10 degrees)
             cameraRig.setAttribute("animation__rotation", {
                 property: "rotation",
-                from: "0 0 0",
+                from: "-5 0 0",
                 to: "10 0 0",
                 dur: 3000,
                 easing: "easeInOutQuad"
@@ -29,7 +29,7 @@ AFRAME.registerComponent("animate-camera", {
                 // Enable movement
                 cameraRig.setAttribute("wasd-controls", "fly: true; acceleration: 5;");
             }, 3000); // Matches animation duration
-        }, 100); // Small delay for scene initialization
+        }, 3000); // Pause for 3 seconds before animation starts
     }
 });
 
