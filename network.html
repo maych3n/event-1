@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>My Networked-AFrame Scene</title>
+    <script src="https://aframe.io/releases/1.7.0/aframe.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.8.1/socket.io.min.js"></script>
+    <script src="https://unpkg.com/networked-aframe@^0.14.0/dist/networked-aframe.min.js"></script>
+</head>
+<body>
+    <a-scene networked-scene="room: myroom; adapter: wseasy;">
+        <a-assets>
+            <img id="grass" src="Assets/junya-watanabe-runway-archives/JW10_1_IMGCentury.png" autoplay loop="true" crossorigin="anonymous"></img>
+        </a-assets>
+
+        <!-- Avatar Template (Must be outside <a-assets>) -->
+        <template id="avatar-template">
+            <a-sphere position="0 -1 0" scale="3 3 3" color="blue"></a-sphere>
+        </template>
+
+        <!-- Player Entity (Camera + Avatar) -->
+        <a-entity id="player" 
+                  networked="template:#avatar-template; attachTemplateToLocal:true;" 
+                  camera wasd-controls look-controls>
+        </a-entity>
+
+        <!-- Skybox with Video Texture -->
+        <a-sky material="shader: flat; src: #grass; repeat: 2 1; offset: 0 0"></a-sky>
+    </a-scene>
+</body>
+</html>

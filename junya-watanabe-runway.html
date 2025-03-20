@@ -37,10 +37,7 @@
   <div class="fixed-text" id="scene-text"></div>
   <div class="title-line"></div>
   <div class="z-indicator" id="z-indicator">Z: 0</div>
-  <a-scene networked-scene="
-  room: junyawatanaberunway;         
-  serverURL: /;
-  adapter: wseasy;">
+  <a-scene>
       
       <a-assets>
         <a-asset-item id="avatarModel" src="Assets/landing/yellow.gltf"></a-asset-item>
@@ -112,18 +109,14 @@
 <a-entity id="avatar" networked="template:#avatar-template; attachTemplateToLocal:false;">
 </a-entity>
 
-      <!-- Player Entity (Syncs Avatar & Camera) -->
-      <a-entity id="player" networked="template:#avatar-template; attachTemplateToLocal:true;" position="-10 11 45">
-        <a-camera wasd-controls look-controls vertical-move="speed: 10"></a-camera>
-    </a-entity>
-
-    <!-- Avatar Template (What Others See) -->
-    <template id="avatar-template">
-        <a-gltf-model src="#avatarModel" scale="250 250 250" position="0 -1 0"></a-gltf-model>
-    </template>
+<!-- Avatar Template (What all users see) -->
+<template id="avatar-template">
+    <a-gltf-model src="#avatarModel" scale="5 5 5"></a-gltf-model>
+</template>
 
 <a-entity class="xyz" material="transparent: true" position="0 10 5"></a-entity>
 
+<a-gltf-model src="Assets/landing/yellow.gltf" position="0 1 -5" scale="2s"></a-gltf-model>
 
 
 <!-- AW 93 <a-image src="#text-a" position="-40 10 3" rotation="0 10 0" width="60" height="30" ></a-image> -->
@@ -206,8 +199,10 @@
 
          
            <a-sky color="#000"></a-sky>
-
-
+  
+ <!-- Camera with WASD and custom Y-axis controls -->
+ <a-camera position="-10 11 45" wasd-controls look-controls vertical-move="speed: 10"></a-camera>
+ 
     </a-scene>
   
 
