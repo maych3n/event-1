@@ -8,18 +8,20 @@
     
 </head>
 <body>
-    <a-scene networked-scene="serverURL: https://longing-rare-ridge.glitch.me;">
+    <a-scene networked-scene="serverURL: https://longing-rare-ridge.glitch.me">
+
         <a-assets>
-            <a-asset-item id="avatarModel" src="Assets/landing/yellow.gltf"></a-asset-item>
+
             <img id="grass" src="Assets/junya-watanabe-runway-archives/JW10_1_IMGCentury.png" autoplay loop="true" crossorigin="anonymous"></img>
         </a-assets>
 
         <!-- Avatar Template (Must be outside <a-assets>) -->
             <template id="avatar-template">
                 <a-entity class="avatar">
-                  <a-gltf-model src="#avatarModel" position="0 -1 0" scale="250 250 250"></a-gltf-model>
+                    <a-gltf-model src="Assets/landing/yellow.gltf" position="0 -1 0" scale="250 250 250"></a-gltf-model>
                 </a-entity>
-              </template>
+            </template>
+            
 
 
         <!-- Player Entity (Camera + Avatar) -->
