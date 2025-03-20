@@ -29,7 +29,7 @@ AFRAME.registerComponent("animate-camera", {
                 // Enable movement
                 cameraRig.setAttribute("wasd-controls", "fly: true; acceleration: 5;");
             }, 2500); // Matches animation duration
-        }, 3000); // Pause for 3 seconds before animation starts
+        }, 1500); // Pause for 3 seconds before animation starts
     }
 });
 
