@@ -22,7 +22,7 @@
   }
 
   updateCountdown();
-  setInterval(updateCountdown, 10000);
+  setInterval(updateCountdown, 1000);
 
 // Cursor Logic
 document.addEventListener("DOMContentLoaded", function () {
