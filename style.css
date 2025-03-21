@@ -1,6 +1,8 @@
 /* Basic styling for the body */
 body {
-    font-family: Arial, sans-serif;
+    font-family: "neue-haas-unica", sans-serif;
+    font-weight: 400;
+    font-style: normal;
     margin: 0;
     padding: 0;
     background-color: #f4f4f4;
@@ -26,11 +28,3 @@ main {
 h2 {
     color: #333;
 }
-
-@font-face {
-    font-family: 'TT Paplane';
-    src: url('/Assets/TT-Paplane-Variable.woff2') format('woff2');
-    font-weight: 100 900; /* Assuming it supports a range of weights */
-    font-style: normal;
-    font-display: swap;
-  }

@@ -1,10 +1,3 @@
-@font-face {
-  font-family: 'TT Paplane';
-  src: url('/Assets/TT-Paplane-Variable.woff2') format('woff2');
-  font-weight: 100 900; /* Assuming it supports a range of weights */
-  font-style: normal;
-  font-display: swap;
-}
 
 
 a.invite-fixed-text {

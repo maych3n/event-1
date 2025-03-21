@@ -1,12 +1,4 @@
-  
-  /* Top Bar */
-  @font-face {
-    font-family: 'TT Paplane';
-    src: url('/Assets/TT-Paplane-Variable.woff2') format('woff2');
-    font-weight: 100 900;
-    font-style: normal;
-    font-display: swap;
-  }
+
   .center-text {
     position: absolute;
     left: 50%;
@@ -80,10 +72,10 @@
   
   /* Left-Side Buttons */
   .menu-button.event {
-    font-family: 'TT Paplane', sans-serif;
+    font-family: "neue-haas-unica", sans-serif;
     font-weight: 400;
-    font-variation-settings: 'wght' 400;
-    font-size: 16pt;
+    font-style: normal;
+    font-size: 14pt;
     border-left: none;
   }
 
