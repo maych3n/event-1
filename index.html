@@ -6,34 +6,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>EVENT</title>
-    <script src="https://aframe.io/releases/1.6.0/aframe.min.js"></script>
     <link rel="stylesheet" href="https://use.typekit.net/udj6sje.css">
     <link rel="stylesheet" href="index.css">
     <script src="scripts.js" defer></script>
+    <script src="index.js" defer></script>
     <style>
   
     </style>
 </head>
 
 <body>
+<div class="top-container">
+    <div class="index">Index</div>
+    <div class="event">EVENT</div>
+    <div class="about">About</div>
+  </div>
 
 <div class="link-container">
-  <a href="martine-rose.html" class="link1">MARTINE ROSE NIKE SHOX</a>
-  <a href="https://example.com/flying-marant" class="link2">FLYING MARANT</a>
-  <a href="https://example.com/house-of-chrome" class="link3">HOUSE OF CHROME</a>
-  <a href="junyarunwaystory.html" class="link4">JUNYA WATANABE RUNWAY ARCHIVES 1993-2022</a>
-  <a href="marc-jacobs-chatgpt.html" class="link6">MARC JACOBS IN CONVERSATION</a>
+  <a href="gentle-monster-dheygere.html" class="link1">Gentle Monster x D'heygere</a>
+  <a href="junya-watanabe-runway-invite.html" class="link2">Junya Watanabe Runway Archives 1993-2022</a>
+  <a href="martine-rose-nike.html" class="link3">Martine Rose x Nike</a>
+  <a href="marc-jacobs-chatgpt.html" class="link4">Marc Jacobs in Conversation with ChatGPT</a>
+  <a href="inspiration-eigo.html" class="link5">Traces of Influence</a>
 </div>
 
-<a-scene embedded gltf-model="dracoDecoderPath: https://www.gstatic.com/draco/v1/decoders/">
-  <a-camera position="0 1.6 0" look-controls="enabled: false" wasd-controls="enabled: false"></a-camera>
 
-  <a-box position="-1 0.5 -3" rotation="0 45 0" color="#4CC3D9"></a-box>
-  <a-sphere position="0 1.25 -5" radius="1.25" color="#EF2D5E"></a-sphere>
-  <a-cylinder position="1 0.75 -3" radius="0.5" height="1.5" color="#FFC65D"></a-cylinder>
-  <a-plane position="0 0 -4" rotation="-90 0 0" width="4" height="4" color="#7BC8A4"></a-plane>
-  <a-sky color="#ECECEC"></a-sky>
-</a-scene>
+<div class="countdown-container">
+  <div class="countdown-marquee">
+    <span id="countdown-text"></span>
+    <span id="countdown-text-duplicate"></span>
+    <span id="countdown-text-triple"></span><!-- Extra instance for overlap -->
+  </div>
+
+
+
    
 
 </body>

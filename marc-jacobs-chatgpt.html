@@ -9,6 +9,7 @@
     <script src="https://unpkg.com/networked-aframe/dist/networked-aframe.min.js"></script>
 
     <link rel="stylesheet" href="marc-jacobs-chatgpt.css">
+    <link rel="stylesheet" href="white-topbar.css">
     <script src="scripts.js" defer></script>
     
 </head>
@@ -103,21 +104,32 @@
 
            <a-sky color="#000"></a-sky>
         <!-- Camera with default WASD and look controls -->
-        <a-camera position="0 9 45" wasd-controls="fly: true; acceleration: 60" look-controls></a-camera>
+        <a-camera position="0 11 45" wasd-controls="fly: true; acceleration: 60" look-controls></a-camera>
     </a-scene>
 
-    <img
-    class="overlay"
-    src="Assets/LogoThesis.png"
-    width="90"
-    height="90"
-    alt="Menu"
-    onclick="toggleSidebar()"
-  />
+
 <!-- Sidebar -->
+<div class="top-bar">
+  <!-- Left-Side Buttons Container -->
+  <div class="left-buttons">
+<button class="menu-button event" onclick="openSidebar()">EVENT</button>
+<button class="menu-button interview" onclick="toggleSidebar()">Read Interview</button>
+    <button class="menu-button credits">Credits</button>
+  </div>
+  
+  <div class="center-text">Marc Jacobs in Conversation with ChatGPT</div>
+  
+  <!-- Right-Aligned Buttons Container -->
+  <div class="right-buttons">
+    <button class="menu-button back">  <a href="your-page.html">Back</a> </button>
+    <button class="menu-button next"> <a href="your-page.html">Next</a> </button>
+    <button class="menu-button navigate">How to Move?</button>
+  </div>   
+</div>
+
 <div class="sidebar" id="sidebar">
+  <button class="close-btn" onclick="toggleSidebar()">✖</button>
 <div class="sidebar-content">
-  <span class="close-btn" onclick="toggleSidebar()">✖</span>
 
 
   <h2>Marc Jacobs in conversation with ChatGPT</h2>

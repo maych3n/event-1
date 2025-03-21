@@ -6,32 +6,70 @@
   font-display: swap;
 }
 
-.z-indicator {
+
+a.invite-fixed-text {
+  text-decoration: none;   /* Removes underline */
+  color: inherit;          /* Uses the color defined in your class */
   position: fixed;
-  top: 10vh; /* Below the title line */
-  left: 2vw; /* Align to the left */
-  font-size: 2vh;
-  color: rgb(240, 12, 12);
-  font-family: Arial, sans-serif;
-  font-weight: bold;
-  background: rgba(0, 0, 0, 0.6); /* Semi-transparent background */
+  top: 10.5vh;
+  right: 24.5vw;
+  font-size: 14pt;
+  color: white;
+  font-family: "neue-haas-unica", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  z-index: 1000;
   padding: 0.5vh 1vh;
   border-radius: 5px;
-  z-index: 1000;
+  max-width: 30vw;
+  background: none;
+  background-color: transparent;
+  border: none;
+  transition: color 0.3s ease, color 0.3s ease;
+}
+
+.invite-fixed-text:hover {
+  color: #6f6f6f; /* Light grey text on hover */
 }
       
-      
+  /* Fixed title text */
+  .invite-fixed-left-text {
+    position: fixed;
+    top: 10.5vh; /* Positioned above the line */
+    left: 24.5vw;
+    font-size: 14pt;
+    color: white;
+    font-family: "neue-haas-unica", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    z-index: 1000;
+    padding: 0.5vh 1vh;
+    border-radius: 5px;
+ 
+    
+}
+/* Fixed white line */
+.invite-title-line {
+position: fixed;
+top: 14vh;
+left: 25vw;
+width: calc(100vw - 50vw);
+height: 2.5px;
+background-color: white;
+z-index: 1000;
+}
+
       
       /* Fixed title text */
        .fixed-text {
         position: fixed;
-        top: 4.5vh; /* Positioned above the line */
+        top: 10.5vh; /* Positioned above the line */
         right: 5.5vw;
-        font-size: 3vh;
+        font-size: 14pt;
         color: white;
-        font-family: 'TT Paplane', sans-serif;
-        font-weight: 400; /* Regular weight */
-        font-variation-settings: 'wght' 400; /* Ensures it displays as regular */
+        font-family: "neue-haas-unica", sans-serif;
+        font-weight: 400;
+        font-style: normal;
         z-index: 1000;
         padding: 0.5vh 1vh;
         border-radius: 5px;
@@ -43,13 +81,13 @@
            /* Fixed title text */
            .fixed-left-text {
             position: fixed;
-            top: 4.5vh; /* Positioned above the line */
+            top: 10.5vh; /* Positioned above the line */
             left: 5.5vw;
-            font-size: 3vh;
+            font-size: 14pt;
             color: white;
-            font-family: 'TT Paplane', sans-serif;
-            font-weight: 400; /* Regular weight */
-            font-variation-settings: 'wght' 400; /* Ensures it displays as regular */
+            font-family: "neue-haas-unica", sans-serif;
+            font-weight: 400;
+            font-style: normal;
             z-index: 1000;
             padding: 0.5vh 1vh;
             border-radius: 5px;
@@ -59,7 +97,7 @@
     /* Fixed white line */
     .title-line {
         position: fixed;
-        top: 10vh;
+        top: 14vh;
         left: 6vw;
         width: calc(100vw - 12vw);
         height: 2.5px;
@@ -175,3 +213,4 @@ body {
     font-size: 20px;
     cursor: pointer;
   }
+

@@ -80,19 +80,13 @@ function updateScene() {
     console.log("Header Updated:", headerContainer.textContent); // Debugging
 }
 
-// Function to update the Z-position indicator
-function updateZIndicator() {
-    const camera = document.querySelector("a-camera");
-    const zIndicator = document.getElementById("z-indicator");
 
-    if (camera && zIndicator) {
-        const position = camera.object3D.position;
-        zIndicator.textContent = `Z: ${position.z.toFixed(2)}`;
-    }
-}
 
 // Ensure script runs after the page loads
 window.onload = function() {
     setInterval(updateScene, 200);
     setInterval(updateZIndicator, 200);
 };
+
+
+

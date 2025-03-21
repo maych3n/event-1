@@ -1,55 +1,119 @@
-/* Page Styling */
+/* Page Styling *     font-family: 'TT Paplane', sans-serif;
+    font-weight: 400; /* Regular weight 
+    font-variation-settings: 'wght' 400;  Ensures it displays as regular */
+    html, body {
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden; /* Prevent horizontal scroll */
+   
+        background-color: black;
+      }
 body {
+    font-family: "neue-haas-unica", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    
+}
+
+.top-container {
+    display: flex;
+    justify-content: center; /* Centers horizontally */
+ 
+  }
+
+.event {
     font-family: 'TT Paplane', sans-serif;
-    font-weight: 400; /* Regular weight */
-    font-variation-settings: 'wght' 400; /* Ensures it displays as regular */
+    font-weight: 400;
+    font-variation-settings: 'wght' 400;
+    font-size: 26pt;
+    color: #fff;
+    left: 48%;
+    transform: translateX(-50%); /* Centers horizontally */
+    top: 10px;
+    position: absolute; /* Positions individually */
+
+}
+.index {
+    font-family: "neue-haas-unica", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 20pt;
+    color: #fff;
+    left: 20px;
+    top: 10px;
+    position: absolute; /* Positions individually */
+
+}
+.about {
+    font-family: "neue-haas-unica", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 20pt;
+    color: #fff;
+    right: 50px;
+    top: 10px;
+    position: absolute; /* Positions individually */
 
 }
 
 /* Container for the links */
-.link-container {
-    text-align: left; /* Ensures the links stay left-aligned */
-    margin-top: 50px;
+.top-container {
+    display: flex;
+    justify-content: center; /* Centers EVENT */
+    align-items: center;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 10px 20px;
+
 }
 
 /* Style for the links */
-.link-container a {
-    display: block; /* Makes each link appear on a new line */
+.link-container {
+    margin-top: 25vh; /* Moves the whole container down */
+  }
+  
+  .link-container a {
+    display: block;
     text-decoration: none;
-    color: grey; /* Default color */
-    font-family: 'TT Paplane', sans-serif;
-    font-weight: 400; /* Regular weight */
-    font-variation-settings: 'wght' 400; /* Ensures it displays as regular */
+    color: grey;
+    font-family: "neue-haas-unica", sans-serif;
+    font-weight: 400;
+    font-style: normal;
     font-size: 72px;
     transition: color 0.3s ease;
-    margin-bottom: 10px; /* Adds spacing between links */
-    cursor: none; /* Hides default cursor */
-}
+    margin-bottom: 10px;
+    cursor: none;
+    margin-left: 20px;
+  }
+  
 
 
 /* Hover effect */
 .link-container a:hover {
-    color: yellow; /* Turns yellow on hover */
+    color: rgb(255, 255, 255); /* Turns yellow on hover */
 }
 #custom-cursor {
-    width: 80vw;
-    height: 80vh;
+    width: 60vw;
+    height: 60vh;
     background: no-repeat center;
     background-size: contain;
     position: absolute;
     pointer-events: none;
-    z-index: 9999;
-    transform: scale(0) translate(-50%, -50%);
-    transform-origin: center center; /* Ensures it scales from its own center */
-    transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+    transform: translate(-50%, -50%); /* Only center it */
+    transform-origin: center center;
+    transition: opacity 0.5s ease-out; /* Only animate opacity */
     opacity: 0;
-}
-
-/* Show cursor with animation */
-#custom-cursor.active {
-    transform: scale(1) translate(-50%, -50%);
+    max-width: 60vw;
+    max-height: 60vh;
+  }
+  
+  /* Show cursor with fade-in only */
+  #custom-cursor.active {
     opacity: 1;
-}
+  }
+  
 
 
 /* Font Import */
@@ -60,3 +124,35 @@ body {
     font-style: normal;
     font-display: swap;
 }
+.countdown-container {
+    position: fixed;
+    margin-left: 10px;
+    bottom: 20px;
+    width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    padding: 5px 0;
+  }
+  
+  .countdown-marquee {
+    display: flex;
+    gap: 10vw; /* Space between instances */
+    font-family: "neue-haas-unica", sans-serif;
+    font-size: 20pt;
+    color: white;
+    width: max-content;
+    animation: scroll-right 60s linear infinite; /* 2x slower */
+  }
+  
+  @keyframes scroll-right {
+    from {
+      transform: translateX(-100%);
+    }
+    to {
+      transform: translateX(0%);
+    }
+  }
+  
+  
+
+  
