@@ -43,7 +43,7 @@ document.addEventListener("DOMContentLoaded", function () {
         "link1": "/Assets/landing/EVENT-cursors--08.png",
         "link2": "/Assets/landing/EVENT-cursors--06.png",
         "link3": "/Assets/landing/EVENT-cursors-01.png",
-        "link4": "/Assets/landing/EVENT-cursors-04.png",
+        "link4": "/Assets/landing/EVENT-cursors-marc.png",
         "link5": "/Assets/landing/EVENT-cursors--07.png",
         "link6": "/Assets/landing/EVENT-cursors--07.png"
     };
