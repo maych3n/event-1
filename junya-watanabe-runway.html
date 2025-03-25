@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="junya.css">
     <script src="junya.js" defer></script>
     <link rel="icon" type="image/x-icon" href="Assets/landing/favicon.ico">
+    <script src="https://cdn.jsdelivr.net/npm/aframe-extras@6.1.1/dist/aframe-extras.min.js"></script>
+
     <script>
         // Custom billboard component
         AFRAME.registerComponent('billboard', {
@@ -225,7 +227,12 @@
   
  <!-- Camera with WASD and custom Y-axis controls -->
  <a-camera position="-20 12 49" wasd-controls look-controls vertical-move="speed: 10"></a-camera>
- 
+
+ <a-entity id="rig" movement-controls="speed: 10" position="-20 12 49">
+  <a-entity camera look-controls wasd-controls position="0 1.6 0"></a-entity>
+  <a-entity hand-controls="hand: left"></a-entity>
+  <a-entity hand-controls="hand: right"></a-entity>
+</a-entity>
     </a-scene>
   
 

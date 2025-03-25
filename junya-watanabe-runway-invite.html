@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="w-black-topbar.css">
     <script src="top-bar.js" defer></script>
     <link rel="icon" type="image/x-icon" href="Assets/landing/favicon.ico">
+    <script src="https://cdn.jsdelivr.net/npm/aframe-extras@6.1.1/dist/aframe-extras.min.js"></script>
 
 </head>
 <body>
@@ -93,7 +94,15 @@
            <a-sky color="#000"></a-sky>
 
  <!-- Camera with WASD and custom Y-axis controls -->
-        <a-camera position="0 3 2.5" wasd-controls="fly: true; acceleration: 15" look-controls></a-camera>
+ <a-entity id="cameraRig" position="0 3 2.5" movement-controls="fly: true; speed: 15">
+  <a-camera wasd-controls="fly: true; acceleration: 15" look-controls></a-camera>
+
+  <!-- Optional: VR hands -->
+  <a-entity hand-controls="hand: left"></a-entity>
+  <a-entity hand-controls="hand: right"></a-entity>
+</a-entity>
+     
+ 
     </a-scene>
 
 </body>
