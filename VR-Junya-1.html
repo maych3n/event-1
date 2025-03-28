@@ -16,10 +16,11 @@
 
 
     <script>
-      AFRAME.registerComponent('smooth-locomotion', {
+AFRAME.registerComponent('smooth-locomotion', {
   schema: {
     hand: {type: 'string', default: 'left'},
-    speed: {type: 'number', default: 0.1}
+    speed: {type: 'number', default: 0.1},
+    fly: {type: 'boolean', default: true}
   },
 
   init: function () {
@@ -39,7 +40,10 @@
       const axis = this.controller.axes;
       const moveX = axis[0] * this.data.speed;
       const moveZ = axis[1] * this.data.speed;
-      
+
+      // Handle Flying with Right Thumbstick (Index 3 for Y-axis on Oculus)
+      const flyY = this.data.fly && this.controller.axes[3] ? this.controller.axes[3] * this.data.speed : 0;
+
       // Calculate movement direction based on camera facing
       const camera = document.getElementById('head').object3D;
       const forward = new THREE.Vector3();
@@ -53,9 +57,13 @@
       // Apply movement
       this.cameraRig.object3D.position.addScaledVector(forward, -moveZ);
       this.cameraRig.object3D.position.addScaledVector(strafe, moveX);
+      this.cameraRig.object3D.position.y += flyY;
     }
   }
 });
+
+console.log(navigator.getGamepads());
+
 
     </script>
 </head>
@@ -158,22 +166,12 @@
 
 
 
- <a-entity id="cameraRig" position="0 3 2.5">
-  <a-entity id="head" camera look-controls></a-entity>
-  <a-entity
-    id="leftHand"
-    hand-controls="hand: left"
-    oculus-touch-controls="hand: left"
-    smooth-locomotion="hand: left">
+  <a-entity id="cameraRig" position="0 3 2.5">
+    <a-entity id="head" camera look-controls wasd-controls="fly: true; acceleration: 15"></a-entity>
+    <a-entity id="leftHand" hand-controls="hand: left" oculus-touch-controls="hand: left" smooth-locomotion="hand: left"></a-entity>
+    <a-entity id="rightHand" hand-controls="hand: right" oculus-touch-controls="hand: right" smooth-locomotion="hand: right"></a-entity>
   </a-entity>
-  <a-entity
-    id="rightHand"
-    hand-controls="hand: right"
-    oculus-touch-controls="hand: right"
-    smooth-locomotion="hand: right">
-  </a-entity>
-</a-entity>
-
+  
   </a-scene>
   
 

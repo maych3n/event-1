@@ -50,23 +50,56 @@ AFRAME.registerComponent("animate-camera", {
       }, 1500); // Pause before animation starts
     }
   });
-  
-  AFRAME.registerComponent('vertical-move-controls', {
-  init: function () {
-    this.el.addEventListener('thumbstickmoved', this.onThumbstickMoved.bind(this));
+
+  AFRAME.registerComponent('vr-move-controls', {
+  schema: {
+    leftHand: {type: 'string', default: '#leftHand'},
+    rightHand: {type: 'string', default: '#rightHand'},
+    speed: {type: 'number', default: 0.05},
   },
 
-  onThumbstickMoved: function (event) {
-    const rig = this.el;
-    if (Math.abs(event.detail.y) > 0.1 && event.detail.x === 0) {
-      rig.object3D.position.y += -event.detail.y * 0.05;
+  init: function () {
+    this.cameraRig = document.querySelector('#cameraRig');
+    this.leftController = document.querySelector(this.data.leftHand);
+    this.rightController = document.querySelector(this.data.rightHand);
+  },
+
+  tick: function () {
+    if (!this.cameraRig || !this.leftController || !this.rightController) return;
+
+    // Access gamepads
+    const gamepads = navigator.getGamepads();
+    const leftGamepad = gamepads.find(gp => gp && gp.id.includes('Oculus Touch (Left)'));
+    const rightGamepad = gamepads.find(gp => gp && gp.id.includes('Oculus Touch (Right)'));
+
+    if (leftGamepad) {
+      // Left joystick controls Y-axis (up/down)
+      const moveY = leftGamepad.axes[1] * this.data.speed;
+      this.cameraRig.object3D.position.y += -moveY;
+    }
+
+    if (rightGamepad) {
+      // Right joystick controls X and Z-axis
+      const moveX = rightGamepad.axes[0] * this.data.speed;
+      const moveZ = rightGamepad.axes[1] * this.data.speed;
+
+      // Get forward and strafe directions based on camera rotation
+      const camera = this.cameraRig.children[0].object3D;
+      const forward = new THREE.Vector3();
+      camera.getWorldDirection(forward);
+      forward.y = 0;
+      forward.normalize();
+
+      const strafe = new THREE.Vector3();
+      strafe.crossVectors(new THREE.Vector3(0, 1, 0), forward);
+
+      // Apply movement
+      this.cameraRig.object3D.position.addScaledVector(forward, -moveZ);
+      this.cameraRig.object3D.position.addScaledVector(strafe, moveX);
     }
   }
 });
 
-  // Attach the component to the camera rig
-  document.querySelector("#cameraRig").setAttribute("animate-camera", "");
-  
 </script>
 </head>
 <body>
@@ -133,12 +166,19 @@ AFRAME.registerComponent("animate-camera", {
 
            <a-sky color="#FFFFFF"></a-sky> 
 
-           <a-entity id="cameraRig" position="0 8 40" rotation="-5 0 0" animate-camera
-           wasd-controls="acceleration: 10; fly: true;"
-           movement-controls="speed: 0.1;"
-           vertical-move-controls>
-   <a-camera look-controls></a-camera>
- </a-entity>
+<a-entity id="cameraRig" position="0 8 40" rotation="-5 0 0"
+          wasd-controls="acceleration: 10; fly: true;"
+          movement-controls="speed: 0.1;"
+          vr-move-controls="leftHand: #leftHand; rightHand: #rightHand; speed: 0.05;">
+  <a-camera look-controls></a-camera>
+</a-entity>
+
+<!-- Left Hand -->
+<a-entity id="leftHand" oculus-touch-controls="hand: left"></a-entity>
+
+<!-- Right Hand -->
+<a-entity id="rightHand" oculus-touch-controls="hand: right"></a-entity>
+
 
 
 </a-scene>
