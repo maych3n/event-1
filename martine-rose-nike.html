@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="w-black-topbar.css">
     <script src="top-bar.js" defer></script>
     <link rel="icon" type="image/x-icon" href="Assets/landing/favicon.ico">
-    <script src="https://cdn.jsdelivr.net/npm/aframe-extras@6.1.1/dist/aframe-extras.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-extras@7.5.4/dist/aframe-extras.min.js"></script>
 
  
 </head>
@@ -106,13 +106,17 @@ repeat="2 3"
 
                  <a-sky color="fff"></a-sky>
 
- <!-- Camera with WASD and custom Y-axis controls -->
- <a-camera position="0 0 25" wasd-controls look-controls vertical-move="speed: 0.1"></a-camera>
+ <!-- Working desktop camera
+ <a-camera position="0 0 25" wasd-controls look-controls vertical-move="speed: 0.1"></a-camera> -->
    
- <a-entity id="rig" movement-controls="speed: 0.1" position="0 0 25">
-  <a-entity camera look-controls wasd-controls position="0 1.6 0"></a-entity>
-  <a-entity hand-controls="hand: left"></a-entity>
-  <a-entity hand-controls="hand: right"></a-entity>
+ <a-entity id="rig" movement-controls="speed: 0.1;" universal-controls>
+  <a-entity camera look-controls="pointerLockEnabled: false" position="0 0 25" wasd-controls="fly: true; acceleration: 15">
+    <a-entity cursor="rayOrigin: mouse"></a-entity>
+  </a-entity>
+
+  <a-entity oculus-touch-controls="hand: left"></a-entity>
+
+  <a-entity oculus-touch-controls="hand: right"></a-entity>
 </a-entity>
 
 </a-scene>
