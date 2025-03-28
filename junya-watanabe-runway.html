@@ -225,14 +225,25 @@
          
            <a-sky color="#000"></a-sky>
   
- <!-- Camera with WASD and custom Y-axis controls -->
- <a-camera position="-20 12 49" wasd-controls look-controls vertical-move="speed: 10"></a-camera>
+ <!-- working OG camera
+ <a-camera position="-20 12 49" wasd-controls look-controls vertical-move="speed: 10"></a-camera> -->
 
- <a-entity id="rig" movement-controls="speed: 10" position="-20 12 49">
-  <a-entity camera look-controls wasd-controls position="0 1.6 0"></a-entity>
-  <a-entity hand-controls="hand: left"></a-entity>
-  <a-entity hand-controls="hand: right"></a-entity>
-</a-entity>
+ 
+ 
+  <a-camera id="desktopCamera" position="-20 12 49" wasd-controls look-controls vertical-move="speed: 10"></a-camera>
+
+  <!-- Camera Rig for VR Movement with Oculus -->
+  <a-entity id="rig" movement-controls="speed: 0.1;" universal-controls>
+    <a-entity camera look-controls="pointerLockEnabled: false" position="0 1.6 0"></a-entity>
+
+    <!-- Left Hand Controller for VR -->
+    <a-entity oculus-touch-controls="hand: left"></a-entity>
+
+    <!-- Right Hand Controller for VR -->
+    <a-entity oculus-touch-controls="hand: right"></a-entity>
+  </a-entity>
+
+
     </a-scene>
   
 
