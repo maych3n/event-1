@@ -14,31 +14,59 @@
     <link rel="icon" type="image/x-icon" href="Assets/landing/favicon.ico">
     <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-extras@7.5.4/dist/aframe-extras.min.js"></script>
     <script>
-AFRAME.registerComponent('oculus-thumbstick-controls', {
+AFRAME.registerComponent("animate-camera", {
+    init: function () {
+      const cameraRig = document.querySelector("#cameraRig");
+  
+      setTimeout(() => {
+        // Animate Position
+        cameraRig.setAttribute("animation", {
+          property: "position",
+          from: "0 8 40",
+          to: "-0.35 0.5 2.5",
+          dur: 2500,
+          easing: "easeInOutQuad"
+        });
+  
+        // Animate Rotation (Y-axis: 0 → 10 degrees)
+        cameraRig.setAttribute("animation__rotation", {
+          property: "rotation",
+          from: "-5 0 0",
+          to: "10 0 0",
+          dur: 2500,
+          easing: "easeInOutQuad"
+        });
+  
+        // Wait for animation to finish, then enable movement (both desktop and VR)
+        setTimeout(() => {
+          cameraRig.removeAttribute("animation");
+          cameraRig.removeAttribute("animation__rotation");
+  
+          // Enable both smooth locomotion for VR and WASD for Desktop
+          cameraRig.setAttribute("universal-controls", "");
+          cameraRig.setAttribute("movement-controls", "speed: 0.1;");
+          cameraRig.setAttribute("wasd-controls", "fly: true; acceleration: 5;");
+        }, 2500); // Matches animation duration
+      }, 1500); // Pause before animation starts
+    }
+  });
+  
+  AFRAME.registerComponent('vertical-move-controls', {
   init: function () {
     this.el.addEventListener('thumbstickmoved', this.onThumbstickMoved.bind(this));
   },
 
   onThumbstickMoved: function (event) {
     const rig = this.el;
-    const camera = rig.querySelector('[camera]');
-    const direction = new THREE.Vector3();
-
-    if (event.detail.x !== 0 || event.detail.y !== 0) {
-      camera.object3D.getWorldDirection(direction);
-      direction.y = 0; // Prevent unintended vertical movement for horizontal motion
-
-      // Handle left/right and forward/back movement
-      const moveX = event.detail.x * 0.1;
-      const moveZ = event.detail.y * 0.1;
-
-      rig.object3D.position.x -= moveX * Math.cos(camera.object3D.rotation.y);
-      rig.object3D.position.z -= moveZ * Math.cos(camera.object3D.rotation.y);
-      rig.object3D.position.x -= moveZ * Math.sin(camera.object3D.rotation.y);
-      rig.object3D.position.z += moveX * Math.sin(camera.object3D.rotation.y);
+    if (Math.abs(event.detail.y) > 0.1 && event.detail.x === 0) {
+      rig.object3D.position.y += -event.detail.y * 0.05;
     }
   }
 });
+
+  // Attach the component to the camera rig
+  document.querySelector("#cameraRig").setAttribute("animate-camera", "");
+  
 </script>
 </head>
 <body>
@@ -105,35 +133,13 @@ AFRAME.registerComponent('oculus-thumbstick-controls', {
 
            <a-sky color="#FFFFFF"></a-sky> 
 
+           <a-entity id="cameraRig" position="0 8 40" rotation="-5 0 0" animate-camera
+           wasd-controls="acceleration: 10; fly: true;"
+           movement-controls="speed: 0.1;"
+           vertical-move-controls>
+   <a-camera look-controls></a-camera>
+ </a-entity>
 
-           <a-entity id="cameraRig" position="0 8 40" rotation="-5 0 0" animate-camera>
-            <!-- Camera with Desktop and VR Movement Support -->
-            <a-camera wasd-controls="acceleration: 10; fly: true;" look-controls></a-camera>
-          </a-entity>
-
-       <!-- working animated desktop camera
-           <a-entity id="cameraRig" position="0 8 40" rotation="-5 0 0" animate-camera>
-            <a-camera wasd-controls="acceleration: 10; fly: true;" look-controls></a-camera>
-        </a-entity>
-
-        -->    
-
-
-
-        
- <!--  <a-camera position="0 1 2" rotation="180 0 0" wasd-controls look-controls vertical-move="speed: 0.1"></a-camera>
-   
-Camera with WASD and custom Y-axis controls 
- <a-entity id="cameraRig" position="0 1 10" wasd-controls look-controls>
-    <a-camera></a-camera>
-    <a-animation attribute="position"
-                 from="0 5 40" 
-                 to="-5 1 1"
-                 dur="3000"
-                 easing="ease-in-out"> 
-    </a-animation>
-</a-entity>
--->
 
 </a-scene>
 

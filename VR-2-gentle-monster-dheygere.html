@@ -1,165 +1,128 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>D'HEYGERE X GENTLE MONSTER</title>
-    <script src="https://aframe.io/releases/1.6.0/aframe.min.js"></script>
-    <script src="https://unpkg.com/networked-aframe/dist/networked-aframe.min.js"></script>
-    <script src="scripts.js" defer></script>
-    <link rel="stylesheet" href="gentle-monster.css">
-    <link rel="stylesheet" href="white-topbar.css">
-    <script src="top-bar.js" defer></script>
-    <link rel="icon" type="image/x-icon" href="Assets/landing/favicon.ico">
-    <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-extras@7.5.4/dist/aframe-extras.min.js"></script>
-    <script>
-      AFRAME.registerComponent('oculus-thumbstick-controls', {
-        init: function () {
-          this.el.addEventListener('thumbstickmoved', this.onThumbstickMoved.bind(this));
-        },
-      
-        onThumbstickMoved: function (event) {
-          const rig = this.el;
-          const camera = rig.querySelector('[camera]');
-          const direction = new THREE.Vector3();
-      
-          if (event.detail.x !== 0 || event.detail.y !== 0) {
-            camera.object3D.getWorldDirection(direction);
-            direction.y = 0; // Prevent unintended vertical movement for horizontal motion
-      
-            // Handle left/right and forward/back movement
-            const moveX = event.detail.x * 0.1;
-            const moveZ = event.detail.y * 0.1;
-      
-            rig.object3D.position.x -= moveX * Math.cos(camera.object3D.rotation.y);
-            rig.object3D.position.z -= moveZ * Math.cos(camera.object3D.rotation.y);
-            rig.object3D.position.x -= moveZ * Math.sin(camera.object3D.rotation.y);
-            rig.object3D.position.z += moveX * Math.sin(camera.object3D.rotation.y);
-          }
-        }
-      });
-      
-      AFRAME.registerComponent('vertical-move-controls', {
-        init: function () {
-          this.el.addEventListener('thumbstickmoved', this.onThumbstickMoved.bind(this));
-        },
-      
-        onThumbstickMoved: function (event) {
-          const rig = this.el;
-          if (Math.abs(event.detail.y) > 0.1) {
-            rig.object3D.position.y += -event.detail.y * 0.05;
-          }
-        }
-      });
-      </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>D'HEYGERE X GENTLE MONSTER</title>
+  <script src="https://aframe.io/releases/1.6.0/aframe.min.js"></script>
+  <script src="https://unpkg.com/networked-aframe/dist/networked-aframe.min.js"></script>
+  <script src="scripts.js" defer></script>
+  <link rel="stylesheet" href="gentle-monster.css">
+  <link rel="stylesheet" href="white-topbar.css">
+  <script src="top-bar.js" defer></script>
+  <link rel="icon" type="image/x-icon" href="Assets/landing/favicon.ico">
+  <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-extras@7.5.4/dist/aframe-extras.min.js"></script>
+  
+  <script>
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelector("#cameraRig").setAttribute("animate-camera", "");
+  });
+
+  AFRAME.registerComponent("animate-camera", {
+    init: function () {
+      const cameraRig = document.querySelector("#cameraRig");
+
+      setTimeout(() => {
+        // Animate Position
+        cameraRig.setAttribute("animation", {
+          property: "position",
+          from: "0 8 40",
+          to: "-0.35 0.5 2.5",
+          dur: 2500,
+          easing: "easeInOutQuad"
+        });
+
+        // Animate Rotation
+        cameraRig.setAttribute("animation__rotation", {
+          property: "rotation",
+          from: "-5 0 0",
+          to: "10 0 0",
+          dur: 2500,
+          easing: "easeInOutQuad"
+        });
+
+        // Enable movement after animation
+        setTimeout(() => {
+          cameraRig.removeAttribute("animation");
+          cameraRig.removeAttribute("animation__rotation");
+
+          // Enable Desktop and VR movement
+          cameraRig.setAttribute("universal-controls", "");
+          cameraRig.setAttribute("movement-controls", "speed: 0.1;");
+          cameraRig.setAttribute("wasd-controls", "fly: true; acceleration: 5;");
+        }, 2500); // Matches animation duration
+      }, 1500); // Pause before animation starts
+    }
+  });
+
+  AFRAME.registerComponent('vertical-move-controls', {
+    init: function () {
+      this.el.addEventListener('thumbstickmoved', this.onThumbstickMoved.bind(this));
+    },
+
+    onThumbstickMoved: function (event) {
+      const rig = this.el;
+      if (Math.abs(event.detail.y) > 0.1 && event.detail.x === 0) {
+        console.log('Thumbstick Y Movement:', event.detail.y);
+        rig.object3D.position.y += -event.detail.y * 0.05;
+      }
+    }
+  });
+  </script>
 </head>
 <body>
-
-
-
-<div class="top-bar">
-    <!-- Left-Side Buttons Container -->
+  <div class="top-bar">
     <div class="left-buttons">
-<button class="menu-button event" onclick="openSidebar()">EVENT</button>
+      <button class="menu-button event" onclick="openSidebar()">EVENT</button>
       <button class="menu-button credits">Credits</button>
     </div>
     <div class="center-text">Gentle Monster x D'heygere</div>
-    <!-- Right-Aligned Buttons Container -->
     <div class="right-buttons">
-      <button class="menu-button back">  <a href="index.html">Back</a> </button>
-      <button class="menu-button next"> <a href="junya-watanabe-runway-invite.html">Next</a> </button>
+      <button class="menu-button back"><a href="index.html">Back</a></button>
+      <button class="menu-button next"><a href="junya-watanabe-runway-invite.html">Next</a></button>
       <button class="menu-button navigate">How to Move?</button>
-    </div>   
-</div>
+    </div>
+  </div>
 
-<div id="index" class="indexbar">
-  <button class="index-close-btn" onclick="closeSidebar()">✖</button>
-  <p>Sidebar Content Goes Here</p>
-</div>
+  <div id="index" class="indexbar">
+    <button class="index-close-btn" onclick="closeSidebar()">✖</button>
+    <p>Sidebar Content Goes Here</p>
+  </div>
 
-  <!-- TOP BAR END -->
+  <img class="overlay-left" src="Assets/gentle-monster/logos-01.png" alt="Overlay Image">
+  <img class="overlay-right" src="Assets/gentle-monster/logos-02.png" alt="Overlay Image">
 
-    <img class="overlay-left" src="Assets/gentle-monster/logos-01.png" alt="Overlay Image">
-    <img class="overlay-right" src="Assets/gentle-monster/logos-02.png" alt="Overlay Image">
-    <a-scene gltf-model="dracoDecoderPath: https://www.gstatic.com/draco/v1/decoders/" rotation="0 90 0">
-      
-      <a-assets>
-             <a-asset-item id="bea" src="Assets/gentle-monster/bea-with-glasses-compressed.glb" ></a-asset-item> 
-                <img id="back" src="Assets/gentle-monster/back-plane.png">
-             <a-asset-item id="cards" src="Assets/gentle-monster/gentlemonstercards.glb" ></a-asset-item>  
+  <a-scene gltf-model="dracoDecoderPath: https://www.gstatic.com/draco/v1/decoders/" rotation="0 90 0">
+    <a-assets>
+      <a-asset-item id="bea" src="Assets/gentle-monster/bea-with-glasses-compressed.glb"></a-asset-item> 
+      <img id="back" src="Assets/gentle-monster/back-plane.png">
+      <a-asset-item id="cards" src="Assets/gentle-monster/gentlemonstercards.glb"></a-asset-item>  
+    </a-assets>
 
-      </a-assets>
-      <a-light type="ambient" intensity="0.8"></a-light>
-      <a-light type="directional" position="-3.7 0.4 1.7" intensity="1" look-at="#cards"></a-light>
-      <a-light type="directional" position="1.5 0.4 -1.4" intensity="0.5" look-at="#cards"></a-light>
+    <a-light type="ambient" intensity="0.8"></a-light>
+    <a-light type="directional" position="-3.7 0.4 1.7" intensity="1" look-at="#cards"></a-light>
+    <a-light type="directional" position="1.5 0.4 -1.4" intensity="0.5" look-at="#cards"></a-light>
 
+    <a-gltf-model src="#bea" scale="11 11 11" position="0 0 -9" rotation="0 -65 0"></a-gltf-model>
+    <a-gltf-model src="#cards" scale="0.35 0.35 0.35" position="-0.74 0 -1.61" rotation="0 -55 0"></a-gltf-model>
+    
+    <!-- Sky and Background Planes -->
+    <a-sky color="#FFFFFF"></a-sky>
+    <a-plane position="0 12 -10" rotation="0 0 0" width="300" height="25" material="shader: flat; src: #back; side: double"></a-plane>
+    <a-plane position="0 0 3.2" rotation="90 0 0" width="300" height="25" material="shader: flat; src: #back; side: double"></a-plane>
 
-      <a-gltf-model src="#bea"  scale="11 11 11" position="0 0 -9" rotation="0 -65 0" ></a-gltf-model>
-      <a-gltf-model src="#cards"  scale="0.35 0.35 0.35" position="-0.74 0 -1.61" rotation="0 -55 0" ></a-gltf-model>
-      <a-plane 
-      position="0 12 -10" 
-      rotation="0 0 0" 
-      width="300"
-      height="25" 
-      material="shader: flat; src: #back; side: double">
-  </a-plane>
-  <a-plane 
-  position="0 0 3.2" 
-  rotation="90 0 0" 
-  width="300"
-  height="25" 
-  material="shader: flat; src: #back; side: double">
-</a-plane>
+    <!-- Camera Rig with Movement -->
+    <a-entity id="cameraRig" position="0 8 40" rotation="-5 0 0" animate-camera
+               wasd-controls="acceleration: 10; fly: true;"
+               movement-controls="speed: 0.1;"
+               vertical-move-controls>
+      <a-camera look-controls></a-camera>
+    </a-entity>
 
-           <!--  <a-gltf-model src="#"  scale="3 3 3" position="0 0 0" rotation="0 0 0" ></a-gltf-model> -->
-           <!-- <a-image 
-                 src="Assets/vivwestwood/vivienne-westwood-logo.png" position="0 0 0" scale="3 3 3" ></a-image> -->
-
-           <a-sky color="#FFFFFF"></a-sky> 
-
-
-           <a-entity id="cameraRig" position="0 8 40" rotation="-5 0 0"
-           wasd-controls="acceleration: 10; fly: true;" 
-           oculus-thumbstick-controls
-           vertical-move-controls
-           animate-camera>
-   <!-- Camera with Look Controls -->
-   <a-camera look-controls></a-camera>
-
-   <!-- Oculus Touch Controllers -->
-   <a-entity oculus-touch-controls="hand: left"></a-entity>
-   <a-entity oculus-touch-controls="hand: right"></a-entity>
- </a-entity>
-
-       <!-- working animated desktop camera
-           <a-entity id="cameraRig" position="0 8 40" rotation="-5 0 0" animate-camera>
-            <a-camera wasd-controls="acceleration: 10; fly: true;" look-controls></a-camera>
-        </a-entity>
-
-        -->    
-
-
-
-        
- <!--  <a-camera position="0 1 2" rotation="180 0 0" wasd-controls look-controls vertical-move="speed: 0.1"></a-camera>
-   
-Camera with WASD and custom Y-axis controls 
- <a-entity id="cameraRig" position="0 1 10" wasd-controls look-controls>
-    <a-camera></a-camera>
-    <a-animation attribute="position"
-                 from="0 5 40" 
-                 to="-5 1 1"
-                 dur="3000"
-                 easing="ease-in-out"> 
-    </a-animation>
-</a-entity>
--->
-
-</a-scene>
-
- <!-- HTML here -->
-
-
+    <!-- Oculus Controllers -->
+    <a-entity oculus-touch-controls="hand: left"></a-entity>
+    <a-entity oculus-touch-controls="hand: right"></a-entity>
+  </a-scene>
 </body>
 </html>
