@@ -15,21 +15,39 @@
       AFRAME.registerComponent('set-start-position', {
         init: function () {
           const rig = document.getElementById('rig');
+          if (!rig) {
+            console.error('Rig not found. Ensure #rig exists with id="rig"');
+            return;
+          }
     
-          // Set correct starting position depending on mode
+          const setPosition = (x, y, z) => {
+            requestAnimationFrame(() => {
+              rig.setAttribute('position', `${x} ${y} ${z}`);
+            });
+          };
+    
+          // Set appropriate start position based on mode
+          if (this.el.sceneEl.is('vr-mode')) {
+            setPosition(0, 0, 55); // VR Start Position
+          } else {
+            setPosition(0, 0, 25); // Desktop Start Position
+          }
+    
+          // Adjust on enter and exit VR
           this.el.sceneEl.addEventListener('enter-vr', function () {
-            rig.setAttribute('position', '0 0 55'); // VR Start Position
+            setPosition(0, 0, 55); // VR Start Position
           });
     
           this.el.sceneEl.addEventListener('exit-vr', function () {
-            rig.setAttribute('position', '0 0 25'); // Desktop Start Position
+            setPosition(0, 0, 25); // Desktop Start Position
           });
         }
       });
     
-      // Add to the scene
+      // Attach the component to the scene
       document.querySelector('a-scene').setAttribute('set-start-position', '');
     </script>
+    
  
 </head>
 <body>
