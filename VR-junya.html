@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Junya Watanabe Runway Archives</title>
+    <script src="https://aframe.io/releases/1.7.0/aframe.min.js"></script>
+    <script src="https://unpkg.com/networked-aframe@latest/dist/networked-aframe.min.js"></script>
+    <link rel="stylesheet" href="junya.css">
+    <script src="junya.js" defer></script>
+    <link rel="icon" type="image/x-icon" href="Assets/landing/favicon.ico">
+    <script src="https://cdn.jsdelivr.net/npm/aframe-extras@6.1.1/dist/aframe-extras.min.js"></script>
+
+    <script>
+      AFRAME.registerComponent('smooth-locomotion', {
+  schema: {
+    hand: {type: 'string', default: 'left'},
+    speed: {type: 'number', default: 0.1}
+  },
+
+  init: function () {
+    this.controller = null;
+    this.cameraRig = document.getElementById('cameraRig');
+  },
+
+  tick: function () {
+    if (!this.controller) {
+      const controllers = Array.from(navigator.getGamepads()).filter(gamepad => gamepad && gamepad.id.includes('Oculus Touch'));
+      if (controllers.length) {
+        this.controller = controllers[this.data.hand === 'left' ? 0 : 1];
+      }
+    }
+
+    if (this.controller) {
+      const axis = this.controller.axes;
+      const moveX = axis[0] * this.data.speed;
+      const moveZ = axis[1] * this.data.speed;
+      
+      // Calculate movement direction based on camera facing
+      const camera = document.getElementById('head').object3D;
+      const forward = new THREE.Vector3();
+      camera.getWorldDirection(forward);
+      forward.y = 0;
+      forward.normalize();
+
+      const strafe = new THREE.Vector3();
+      strafe.crossVectors(new THREE.Vector3(0, 1, 0), forward);
+
+      // Apply movement
+      this.cameraRig.object3D.position.addScaledVector(forward, -moveZ);
+      this.cameraRig.object3D.position.addScaledVector(strafe, moveX);
+    }
+  }
+});
+
+    </script>
+
+    <script>
+        // Custom billboard component
+        AFRAME.registerComponent('billboard', {
+            tick: function () {
+                const camera = this.el.sceneEl.camera;
+                const object3D = this.el.object3D;
+
+                // Get the camera's world position
+                const cameraWorldPos = new THREE.Vector3();
+                camera.getWorldPosition(cameraWorldPos);
+
+                // Make the entity face the camera's world position
+                object3D.lookAt(cameraWorldPos);
+
+                // Correct rotation to keep the image upright
+                object3D.rotation.x = 0;
+                object3D.rotation.z = 0;
+            }
+        });
+    </script>
+ <link rel="stylesheet" href="w-black-topbar.css">
+ <script src="top-bar.js" defer></script>
+
+</head>
+<body>
+
+
+<div class="top-bar">
+ <!-- Left-Side Buttons Container -->
+ <div class="left-buttons">
+<button class="menu-button event" onclick="openSidebar()">EVENT</button>
+   <button class="menu-button credits">Credits</button>
+ </div>
+ <div class="center-text">Junya Watanabe Runway Archives 1993-2022</div>
+ <!-- Right-Aligned Buttons Container -->
+ <div class="right-buttons">
+   <button class="menu-button back">  <a href="junya-watanabe-runway-invite.html">Back</a> </button>
+   <button class="menu-button next"> <a href="martine-rose-nike.html">Next</a> </button>
+   <button class="menu-button navigate">How to Move?</button>
+ </div>   
+</div>
+<div id="index" class="indexbar">
+<button class="index-close-btn" onclick="closeSidebar()">✖</button>
+<p>Sidebar Content Goes Here</p>
+</div>
+<!-- TOP BAR END -->
+  <div class="fixed-left-text"></div>
+  <div class="fixed-text" id="scene-text"></div>
+  <div class="title-line"></div>
+
+  <a-scene>
+      
+      <a-assets>
+        <a-asset-item id="avatarModel" src="Assets/landing/yellow.gltf"></a-asset-item>
+        <img id="text-a" src="Assets/junya-watanabe-runway-archives/junya-text-1.png">
+        <img id="text-b" src="Assets/junya-watanabe-runway-archives/junya-text-2.png">
+        <img id="text-c" src="Assets/junya-watanabe-runway-archives/junya-text-3.png">
+        <img id="text-d" src="Assets/junya-watanabe-runway-archives/junya-text-4.png">
+        <img id="text-e" src="Assets/junya-watanabe-runway-archives/junya-text-5.png">
+        <img id="text-f" src="Assets/junya-watanabe-runway-archives/junya-text-6.png">
+        <img id="text-g" src="Assets/junya-watanabe-runway-archives/junya-text-7.png">
+        <img id="text-h" src="Assets/junya-watanabe-runway-archives/junya-text-8.png">
+        <img id="text-i" src="Assets/junya-watanabe-runway-archives/junya-text-9.png">
+        <img id="text-j" src="Assets/junya-watanabe-runway-archives/junya-text-10.png">
+        
+
+        <img id="a1" src="Assets/junya-watanabe-runway-archives/JW1_2_IMGCentury.png">
+        <img id="a2" src="Assets/junya-watanabe-runway-archives/JW1_3_IMGCentury.png">
+        <img id="a3" src="Assets/junya-watanabe-runway-archives/JW1_4_IMGCentury.png">
+        <img id="a4" src="Assets/junya-watanabe-runway-archives/JW1_5_IMGCentury.png">
+
+    
+        <img id="b1" src="Assets/junya-watanabe-runway-archives/JW2_1_IMGCentury.png">
+        <img id="b2" src="Assets/junya-watanabe-runway-archives/JW2_2_IMGCentury.png">
+        <img id="b4" src="Assets/junya-watanabe-runway-archives/JW2_4_IMGCentury.png">
+
+        <img id="c1" src="Assets/junya-watanabe-runway-archives/JW3_1_IMGCentury.png">
+        <img id="c2" src="Assets/junya-watanabe-runway-archives/JW3_2_IMGCentury.png">
+        <img id="c3" src="Assets/junya-watanabe-runway-archives/JW3_3_IMGCentury.png">
+        <img id="c4" src="Assets/junya-watanabe-runway-archives/JW3_4_IMGCentury.png">
+
+        <img id="d1" src="Assets/junya-watanabe-runway-archives/JW4_1_IMGCentury.png">
+        <img id="d2" src="Assets/junya-watanabe-runway-archives/JW4_2_IMGCentury.png">
+        <img id="d3" src="Assets/junya-watanabe-runway-archives/JW4_3_IMGCentury.png">
+        <img id="d4" src="Assets/junya-watanabe-runway-archives/JW4_4_IMGCentury.png">
+       
+        <img id="e1" src="Assets/junya-watanabe-runway-archives/JW5_1_IMGCentury.png">
+        <img id="e2" src="Assets/junya-watanabe-runway-archives/JW5_2_IMGCentury.png">
+        <img id="e3" src="Assets/junya-watanabe-runway-archives/JW5_3_IMGCentury.png">
+        <img id="e4" src="Assets/junya-watanabe-runway-archives/JW5_4_IMGCentury.png">
+
+        <img id="f1" src="Assets/junya-watanabe-runway-archives/JW6_1_IMGCentury.png">
+        <img id="f2" src="Assets/junya-watanabe-runway-archives/JW6_2_IMGCentury.png">
+        <img id="f3" src="Assets/junya-watanabe-runway-archives/JW6_3_IMGCentury.png">
+        <img id="f4" src="Assets/junya-watanabe-runway-archives/JW6_4_IMGCentury.png">
+
+        <img id="g1" src="Assets/junya-watanabe-runway-archives/JW7_1_IMGCentury.png">
+        <img id="g2" src="Assets/junya-watanabe-runway-archives/JW7_2_IMGCentury.png">
+        <img id="g3" src="Assets/junya-watanabe-runway-archives/JW7_3_IMGCentury.png">
+        <img id="g4" src="Assets/junya-watanabe-runway-archives/JW7_4_IMGCentury.png">
+
+        <img id="h1" src="Assets/junya-watanabe-runway-archives/JW8_1_IMGCentury.png">
+        <img id="h2" src="Assets/junya-watanabe-runway-archives/JW8_2_IMGCentury.png">
+        <img id="h3" src="Assets/junya-watanabe-runway-archives/JW8_3_IMGCentury.png">
+        <img id="h4" src="Assets/junya-watanabe-runway-archives/JW8_4_IMGCentury.png">
+
+        <img id="i1" src="Assets/junya-watanabe-runway-archives/JW9_1_IMGCentury.png">
+        <img id="i2" src="Assets/junya-watanabe-runway-archives/JW9_2_IMGCentury.png">
+        <img id="i3" src="Assets/junya-watanabe-runway-archives/JW9_3_IMGCentury.png">
+        <img id="i4" src="Assets/junya-watanabe-runway-archives/JW9_4_IMGCentury.png">
+
+        <img id="j1" src="Assets/junya-watanabe-runway-archives/JW10_1_IMGCentury.png">
+        <img id="j2" src="Assets/junya-watanabe-runway-archives/JW10_2_IMGCentury.png">
+        <img id="j3" src="Assets/junya-watanabe-runway-archives/JW10_3_IMGCentury.png">
+        <img id="j4" src="Assets/junya-watanabe-runway-archives/JW10_4_IMGCentury.png">
+
+
+      </a-assets>
+<!-- SCENE -->
+<a-entity id="avatar" networked="template:#avatar-template; attachTemplateToLocal:false;">
+</a-entity>
+
+<!-- Avatar Template (What all users see) -->
+<template id="avatar-template">
+    <a-gltf-model src="#avatarModel" scale="5 5 5"></a-gltf-model>
+</template>
+
+<a-entity class="xyz" material="transparent: true" position="0 10 5"></a-entity>
+
+<a-gltf-model src="Assets/landing/yellow.gltf" position="0 1 -5" scale=""></a-gltf-model>
+
+
+<!-- AW 93 <a-image src="#text-a" position="-40 10 3" rotation="0 10 0" width="60" height="30" ></a-image> -->
+<a-image src="#text-a" position="-42 10 2" rotation="0 10 0" width="66" height="31.5" visible="false"></a-image>
+<a-image src="#a4" position="-20 10 -1" rotation="0 10 0" width="20" height="30" ></a-image> 
+<a-image src="#a3" position="-21 11 0" rotation="-2 10 0" width="19.5" height="29.5" billboard></a-image>
+<a-image src="#a2" position="-21 11 1" rotation="-2 10 0" width="19.5" height="29.5" billboard></a-image>
+<a-image src="#a1" position="-21 11 2" rotation="-2 10 0" width="19.5" height="29.5" billboard></a-image>
+
+
+
+<!-- AW 00 -->
+<a-image src="#text-b" position="-37.5 10 -38" rotation="0 10 0" width="66" height="31.5" visible="false"></a-image>
+<a-image src="#b4" position="-15 10 -41" rotation="0 10 0" width="20" height="30" ></a-image>
+<a-image src="#b2" position="-15 10 -40" rotation="-2 0 0" width="20" height="30" billboard></a-image>
+<a-image src="#b2" position="-15 10 -39" rotation="-2 0 0" width="20" height="30" billboard></a-image>
+<a-image src="#b1" position="-15 10 -38" rotation="-2 0 0" width="20" height="30" billboard></a-image>
+
+
+
+<!-- AW 03 -->
+<a-image src="#text-c" position="-22 10 -78" rotation="0 10 0" width="66" height="31.5" visible="false" ></a-image>
+<a-image src="#c4" position="0 10 -81" rotation="0 10 0" width="-20" height="30" ></a-image>
+<a-image src="#c3" position="0 10 -80" rotation="-2 0 0" width="-20" height="30" billboard></a-image>
+<a-image src="#c2" position="0 10 -79" rotation="-2 0 0" width="-20" height="30" billboard></a-image>
+<a-image src="#c1" position="0 10 -78" rotation="-2 0 0" width="-20" height="30" billboard></a-image>
+
+<!-- SS 06 -->
+<a-image src="#text-d" position="-2 10 -118" rotation="0 10 0" width="66" height="31.5" visible="false" ></a-image>
+<a-image src="#d4" position="20 10 -121" rotation="0 10 0" width="20" height="30" ></a-image>
+<a-image src="#d3" position="20 10 -120" rotation="-2 0 0" width="20" height="30" billboard></a-image>
+<a-image src="#d2" position="20 10 -119" rotation="-2 0 0" width="20" height="30" billboard></a-image>
+<a-image src="#d1" position="20 10 -118" rotation="-2 0 0" width="20" height="30" billboard></a-image>
+
+<!-- AW 06 -->
+<a-image src="#text-e" position="18 10 -158" rotation="0 10 0" width="66" height="31.5" visible="false" ></a-image>
+<a-image src="#e4" position="40 10 -161" rotation="0 10 0" width="20" height="30" ></a-image>
+<a-image src="#e3" position="40 10 -160" rotation="-2 0 0" width="20" height="30" billboard></a-image>
+<a-image src="#e2" position="40 10 -159" rotation="-2 0 0" width="20" height="30" billboard></a-image>
+<a-image src="#e1" position="40 10 -158" rotation="-2 0 0" width="20" height="30" billboard></a-image>
+
+<!-- SS 11 -->
+<a-image src="#text-f" position="40 10 -198" rotation="0 10 0" width="66" height="31.5" visible="false" ></a-image>
+<a-image src="#f4" position="62 10 -201" rotation="0 10 0" width="20" height="30" ></a-image>
+<a-image src="#f3" position="62 10 -200" rotation="-2 0 0" width="20" height="30" billboard></a-image>
+<a-image src="#f2" position="62 10 -199" rotation="-2 0 0" width="20" height="30" billboard></a-image>
+<a-image src="#f1" position="62 10 -198" rotation="-2 0 0" width="20" height="30" billboard></a-image>
+
+<!-- SS 15 -->
+<a-image src="#text-g" position="65 10 -238" rotation="0 10 0" width="66" height="31.5" visible="false" ></a-image>
+<a-image src="#g4" position="87 10 -241" rotation="0 10 0" width="20" height="30" ></a-image>
+<a-image src="#g3" position="87 10 -240" rotation="-2 0 0" width="20" height="30" billboard></a-image>
+<a-image src="#g2" position="87 10 -239" rotation="-2 0 0" width="20" height="30" billboard></a-image>
+<a-image src="#g1" position="87 10 -238" rotation="-2 0 0" width="20" height="30" billboard></a-image>
+
+<!-- SS 16 -->
+<a-image src="#text-h" position="91 10 -278" rotation="0 10 0" width="66" height="31.5" visible="false" ></a-image>
+<a-image src="#h4" position="113 10 -281" rotation="0 10 0" width="20" height="30" ></a-image>
+<a-image src="#h3" position="113 10 -280" rotation="-2 0 0" width="20" height="30" billboard></a-image>
+<a-image src="#h2" position="113 10 -279" rotation="-2 0 0" width="20" height="30" billboard></a-image>
+<a-image src="#h1" position="113 10 -278" rotation="-2 0 0" width="20" height="30" billboard></a-image>
+
+<!-- SS 17 -->
+<a-image src="#text-i" position="116 10 -318" rotation="0 10 0" width="66" height="31.5" visible="false" ></a-image>
+<a-image src="#i4" position="138 10 -321" rotation="0 10 0" width="20" height="30" ></a-image>
+<a-image src="#i3" position="138 10 -320" rotation="-2 0 0" width="20" height="30" billboard></a-image>
+<a-image src="#i2" position="138 10 -319" rotation="-2 0 0" width="20" height="30" billboard></a-image>
+<a-image src="#i1" position="138 10 -318" rotation="-2 0 0" width="20" height="30" billboard></a-image>
+
+<!-- SS 21 -->
+<a-image src="#text-j" position="138 10 -358" rotation="0 10 0" width="66" height="31.5" visible="false" ></a-image>
+<a-image src="#j4" position="160 10 -361" rotation="0 10 0" width="20" height="30" ></a-image>
+<a-image src="#j3" position="160 10 -360" rotation="-2 0 0" width="20" height="30" billboard></a-image>
+<a-image src="#j2" position="160 10 -359" rotation="-2 0 0" width="20" height="30" billboard></a-image>
+<a-image src="#j1" position="160 10 -358" rotation="-2 0 0" width="20" height="30" billboard></a-image>
+
+
+<a-entity class="xyz" material="transparent: true" position="0 10 5"></a-entity>
+
+
+         
+           <a-sky color="#000"></a-sky>
+  
+ <!-- working OG camera -->
+ <a-entity id="cameraRig" position="0 1.6 0">
+  <a-entity id="head" camera look-controls></a-entity>
+  <a-entity
+    id="leftHand"
+    hand-controls="hand: left"
+    oculus-touch-controls="hand: left"
+    smooth-locomotion="hand: left">
+  </a-entity>
+  <a-entity
+    id="rightHand"
+    hand-controls="hand: right"
+    oculus-touch-controls="hand: right"
+    smooth-locomotion="hand: right">
+  </a-entity>
+</a-entity>
+
+    </a-scene>
+  
+
+
+</body>
+</html>
