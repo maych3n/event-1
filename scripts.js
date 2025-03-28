@@ -10,29 +10,49 @@ function buttonClicked() {
 }
 
 // VR code
-AFRAME.registerComponent('custom-controls', {
-    init: function () {
-      const rig = this.el;
-      const leftController = document.querySelector('[oculus-touch-controls="hand: left"]');
-      const rightController = document.querySelector('[oculus-touch-controls="hand: right"]');
-      const camera = document.querySelector('a-entity[camera]');
+AFRAME.registerComponent('left-joystick-y-movement', {
+    tick: function () {
+      const controller = this.el;
+      const rig = document.getElementById('rig');
+      const axis = controller.components['oculus-touch-controls']?.axis;
   
-      // Enable thumbstick movement for Y-axis (left controller)
-      leftController.addEventListener('thumbstickmoved', (e) => {
-        if (e.detail.y) {
-          rig.object3D.position.y += e.detail.y * -0.1;
-        }
-      });
+      if (axis && axis.length >= 2) {
+        const yMovement = axis[1] * 0.1; // Adjust the speed with this multiplier
+        const rigPosition = rig.getAttribute('position');
+        rig.setAttribute('position', {
+          x: rigPosition.x,
+          y: rigPosition.y + yMovement,
+          z: rigPosition.z
+        });
+      }
+    }
+  });
   
-      // Enable thumbstick movement for X and Z axes (right controller)
-      rightController.addEventListener('thumbstickmoved', (e) => {
-        if (e.detail.x || e.detail.y) {
-          rig.object3D.position.x += e.detail.x * 0.1;
-          rig.object3D.position.z += e.detail.y * 0.1;
-        }
-      });
+  AFRAME.registerComponent('right-joystick-position-movement', {
+    tick: function () {
+      const controller = this.el;
+      const rig = document.getElementById('rig');
+      const axis = controller.components['oculus-touch-controls']?.axis;
+      const camera = document.querySelector('[camera]');
+      
+      if (axis && axis.length >= 2) {
+        const forwardMovement = axis[1] * 0.1; // Z-axis movement
+        const strafeMovement = axis[0] * 0.1; // X-axis movement
+        
+        const cameraRotation = camera.getAttribute('rotation').y * (Math.PI / 180);
+        const sinY = Math.sin(cameraRotation);
+        const cosY = Math.cos(cameraRotation);
   
-      // Ensure WASD controls work on desktop
-      camera.setAttribute('wasd-controls', 'fly: true; acceleration: 15');
+        // Move in the direction the camera is facing
+        const deltaX = (forwardMovement * sinY) + (strafeMovement * cosY);
+        const deltaZ = (forwardMovement * cosY) - (strafeMovement * sinY);
+  
+        const rigPosition = rig.getAttribute('position');
+        rig.setAttribute('position', {
+          x: rigPosition.x + deltaX,
+          y: rigPosition.y,
+          z: rigPosition.z + deltaZ
+        });
+      }
     }
   });
