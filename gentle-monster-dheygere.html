@@ -13,6 +13,8 @@
     <link rel="stylesheet" href="white-topbar.css">
     <script src="top-bar.js" defer></script>
     <link rel="icon" type="image/x-icon" href="Assets/landing/favicon.ico">
+
+    <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-extras@7.5.4/dist/aframe-extras.min.js"></script>
 </head>
 <body>
 
@@ -78,10 +80,22 @@
 
            <a-sky color="#FFFFFF"></a-sky> 
 
+
+           <a-entity id="cameraRig" position="0 8 40" rotation="-5 0 0" animate-camera>
+            <!-- Camera with Desktop and VR Movement Support -->
+            <a-camera wasd-controls="acceleration: 10; fly: true;" look-controls></a-camera>
+          </a-entity>
+
+       <!-- working animated desktop camera
            <a-entity id="cameraRig" position="0 8 40" rotation="-5 0 0" animate-camera>
             <a-camera wasd-controls="acceleration: 10; fly: true;" look-controls></a-camera>
         </a-entity>
 
+        -->    
+
+
+
+        
  <!--  <a-camera position="0 1 2" rotation="180 0 0" wasd-controls look-controls vertical-move="speed: 0.1"></a-camera>
    
 Camera with WASD and custom Y-axis controls 

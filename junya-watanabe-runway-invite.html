@@ -13,6 +13,7 @@
     <script src="top-bar.js" defer></script>
     <link rel="icon" type="image/x-icon" href="Assets/landing/favicon.ico">
 
+    <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-extras@7.5.4/dist/aframe-extras.min.js"></script>
 </head>
 <body>
 
@@ -92,8 +93,26 @@
          
            <a-sky color="#000"></a-sky>
 
- <!-- Camera with WASD and custom Y-axis controls -->
-        <a-camera position="0 3 2.5" wasd-controls="fly: true; acceleration: 15" look-controls></a-camera>
+ <!-- Camera with WASD and custom Y-axis controls
+        <a-camera position="0 3 2.5" wasd-controls="fly: true; acceleration: 15" look-controls></a-camera> 
+
+         -->
+
+<!-- Camera Rig for Both Desktop and VR -->
+<a-entity id="rig" movement-controls="speed: 0.1;" universal-controls>
+  <!-- Camera with WASD for Desktop and Look-Controls for VR -->
+  <a-entity camera look-controls="pointerLockEnabled: false" position="0 3 2.5" wasd-controls="fly: true; acceleration: 15">
+    <a-entity cursor="rayOrigin: mouse"></a-entity>
+  </a-entity>
+
+  <!-- Left Hand Controller for VR -->
+  <a-entity oculus-touch-controls="hand: left"></a-entity>
+
+  <!-- Right Hand Controller for VR -->
+  <a-entity oculus-touch-controls="hand: right"></a-entity>
+</a-entity>
+
+
     </a-scene>
 
 </body>
