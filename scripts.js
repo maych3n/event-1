@@ -10,41 +10,29 @@ function buttonClicked() {
 }
 
 // VR code
-AFRAME.registerComponent('custom-joystick-controls', {
+AFRAME.registerComponent('custom-controls', {
     init: function () {
-      this.cameraRig = document.getElementById('rig');
-      this.leftJoystickY = 0;
-      this.rightJoystickX = 0;
-      this.rightJoystickY = 0;
+      const rig = this.el;
+      const leftController = document.querySelector('[oculus-touch-controls="hand: left"]');
+      const rightController = document.querySelector('[oculus-touch-controls="hand: right"]');
+      const camera = document.querySelector('a-entity[camera]');
   
-      // Left Controller (Y-Axis Flying)
-      this.el.sceneEl.addEventListener('axismove', (event) => {
-        if (event.target.components['oculus-touch-controls']?.data.hand === 'left') {
-          this.leftJoystickY = event.detail.axis[1]; // Up/Down on Y-Axis
+      // Enable thumbstick movement for Y-axis (left controller)
+      leftController.addEventListener('thumbstickmoved', (e) => {
+        if (e.detail.y) {
+          rig.object3D.position.y += e.detail.y * -0.1;
         }
       });
   
-      // Right Controller (X and Z Movement)
-      this.el.sceneEl.addEventListener('axismove', (event) => {
-        if (event.target.components['oculus-touch-controls']?.data.hand === 'right') {
-          this.rightJoystickX = event.detail.axis[0]; // Left/Right on X-Axis
-          this.rightJoystickY = event.detail.axis[1]; // Forward/Backward on Z-Axis
+      // Enable thumbstick movement for X and Z axes (right controller)
+      rightController.addEventListener('thumbstickmoved', (e) => {
+        if (e.detail.x || e.detail.y) {
+          rig.object3D.position.x += e.detail.x * 0.1;
+          rig.object3D.position.z += e.detail.y * 0.1;
         }
       });
-    },
   
-    tick: function (time, timeDelta) {
-      const speed = 0.05; // Adjust for faster/slower movement
-      const position = this.cameraRig.getAttribute('position');
-  
-      // Adjust the Y-axis using the left joystick
-      position.y += this.leftJoystickY * speed;
-  
-      // Adjust X and Z axis using the right joystick
-      position.x += this.rightJoystickX * speed;
-      position.z += this.rightJoystickY * speed;
-  
-      this.cameraRig.setAttribute('position', position);
+      // Ensure WASD controls work on desktop
+      camera.setAttribute('wasd-controls', 'fly: true; acceleration: 15');
     }
   });
-  
