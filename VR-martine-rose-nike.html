@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Martine Rose x Nike</title>
+    <script src="https://aframe.io/releases/1.6.0/aframe.min.js"></script>
+    <script src="martine-rose.js" defer></script>
+    <link rel="stylesheet" href="w-black-topbar.css">
+    <script src="top-bar.js" defer></script>
+    <link rel="icon" type="image/x-icon" href="Assets/landing/favicon.ico">
+    <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-extras@7.5.4/dist/aframe-extras.min.js"></script>
+    <script>
+     AFRAME.registerComponent('set-start-position', {
+  init: function () {
+    const rig = document.getElementById('rig');
+    if (!rig) {
+      console.error('Rig not found. Ensure #rig exists with id="rig"');
+      return;
+    }
+
+    const setPosition = (x, y, z) => {
+      requestAnimationFrame(() => {
+        rig.setAttribute('position', `${x} ${y} ${z}`);
+      });
+    };
+
+    // Check for initial VR mode using sceneEl's is method
+    if (this.el.sceneEl.is('vr-mode')) {
+      setPosition(100, 100, 55); // VR Start Position
+    } else {
+      setPosition(0, 0, 25); // Desktop Start Position
+    }
+
+    // Adjust on enter and exit VR
+    this.el.sceneEl.addEventListener('enter-vr', () => {
+      setPosition(100, 100, 55); // VR Start Position
+    });
+
+    this.el.sceneEl.addEventListener('exit-vr', () => {
+      setPosition(0, 0, 25); // Desktop Start Position
+    });
+  }
+});
+
+    </script>
+    
+ 
+</head>
+<body>
+
+
+
+<div class="top-bar">
+    <!-- Left-Side Buttons Container -->
+    <div class="left-buttons">
+<button class="menu-button event" onclick="openSidebar()">EVENT</button>
+      <button class="menu-button credits">Credits</button>
+    </div>
+    <div class="center-text">Martine Rose x Nike</div>
+    <!-- Right-Aligned Buttons Container -->
+    <div class="right-buttons">
+      <button class="menu-button back">  <a href="junya-watanabe-runway.html">Back</a> </button>
+      <button class="menu-button next"> <a href="marc-jacobs-chatgpt.html">Next</a> </button>
+      <button class="menu-button navigate">How to Move?</button>
+    </div>   
+</div>
+
+<div id="index" class="indexbar">
+  <button class="index-close-btn" onclick="closeSidebar()">✖</button>
+  <p>Sidebar Content Goes Here</p>
+</div>
+
+  <!-- TOP BAR END -->
+  <a-scene gltf-model="dracoDecoderPath: https://www.gstatic.com/draco/v1/decoders/" set-start-position>
+
+      
+      <a-assets>
+            <a-asset-item id="ball" src="Assets/martine-rose/martine-ball-origin-final.glb" ></a-asset-item> 
+            <a-asset-item id="martine-logo" src="Assets/martine-rose/Asset 2.gltf" ></a-asset-item> 
+            <a-asset-item id="nike-logo" src="Assets/martine-rose/Asset 3.gltf" ></a-asset-item> 
+            <img id="grass" src="Assets/martine-rose/grass.jpg" autoplay loop="true" crossorigin="anonymous"></img>
+
+      </a-assets>
+      <a-light type="ambient" color="#ffffff" intensity="0.5"></a-light>
+      <a-light type="directional" position="2 4 10" intensity="1"></a-light>
+
+   
+
+            <a-gltf-model src="#ball" scale="5 5 5" position="0 0 0" rotation="215 0 0" 
+          spin="speed: 0.3"></a-gltf-model>
+
+          <a-gltf-model src="#martine-logo" scale="40 40 40" position="-10.1 0 15" rotation="0 15 0" 
+    ></a-gltf-model>
+    <a-gltf-model src="#nike-logo" scale="40 40 40" position="10.25 0 15" rotation="0 -15 0" 
+    ></a-gltf-model>
+
+     
+
+      <a-plane 
+    material="shader: flat; src: #grass" 
+    width="500" height="250" 
+    position="0 0 -35" 
+    rotation="0 0 0"
+    repeat="2 3"
+    >
+
+   </a-plane>
+
+   <a-plane 
+   material="shader: flat; src: #grass" 
+   width="500" height="250" 
+   position="0 0 100" 
+   rotation="0 180 0"
+   repeat="2 3"
+   >
+
+  </a-plane>
+
+   <a-plane 
+   material="shader: flat; src: #grass" 
+   width="500" height="250" 
+   position="0 125 30" 
+   rotation="90 0 0"
+   repeat="2 3"
+   >
+  </a-plane>
+  
+</a-plane>
+
+<a-plane 
+material="shader: flat; src: #grass" 
+width="500" height="250" 
+position="0 -125 30" 
+rotation="-90 0 0"
+repeat="2 3"
+>
+</a-plane>
+
+
+                 <a-sky color="fff"></a-sky>
+
+                 <a-entity id="rig" movement-controls="speed: 0.1;" universal-controls>
+                  <a-entity id="camera" camera look-controls="pointerLockEnabled: false" position="0 0 25" wasd-controls="fly: true; acceleration: 15">
+                    <a-entity cursor="rayOrigin: mouse"></a-entity>
+                  </a-entity>
+                </a-entity>
+                
+</a-scene>
+
+
+ <!-- HTML here -->
+
+
+</body>
+</html>
