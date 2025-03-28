@@ -9,7 +9,7 @@ function updateScene() {
     }
 
     const position = camera.object3D.position;
-    console.log("Camera Z Position:", position.z); // Debugging check
+    console.log("Camera Z Position:", position.z); // Depbugging check
 
     // Select text images by ID
     const texts = {

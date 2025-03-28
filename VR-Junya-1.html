@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Inviting All Readers</title>
+    <script src="https://aframe.io/releases/1.6.0/aframe.min.js"></script>
+    <link rel="stylesheet" href="junya.css">
+    <script src="scripts.js" defer></script>
+    <script src="junya-invite.js" defer></script>
+    <link rel="stylesheet" href="w-black-topbar.css">
+    <script src="top-bar.js" defer></script>
+    <link rel="icon" type="image/x-icon" href="Assets/landing/favicon.ico">
+
+    <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-extras@7.5.4/dist/aframe-extras.min.js"></script>
+
+
+    <script>
+      AFRAME.registerComponent('smooth-locomotion', {
+  schema: {
+    hand: {type: 'string', default: 'left'},
+    speed: {type: 'number', default: 0.1}
+  },
+
+  init: function () {
+    this.controller = null;
+    this.cameraRig = document.getElementById('cameraRig');
+  },
+
+  tick: function () {
+    if (!this.controller) {
+      const controllers = Array.from(navigator.getGamepads()).filter(gamepad => gamepad && gamepad.id.includes('Oculus Touch'));
+      if (controllers.length) {
+        this.controller = controllers[this.data.hand === 'left' ? 0 : 1];
+      }
+    }
+
+    if (this.controller) {
+      const axis = this.controller.axes;
+      const moveX = axis[0] * this.data.speed;
+      const moveZ = axis[1] * this.data.speed;
+      
+      // Calculate movement direction based on camera facing
+      const camera = document.getElementById('head').object3D;
+      const forward = new THREE.Vector3();
+      camera.getWorldDirection(forward);
+      forward.y = 0;
+      forward.normalize();
+
+      const strafe = new THREE.Vector3();
+      strafe.crossVectors(new THREE.Vector3(0, 1, 0), forward);
+
+      // Apply movement
+      this.cameraRig.object3D.position.addScaledVector(forward, -moveZ);
+      this.cameraRig.object3D.position.addScaledVector(strafe, moveX);
+    }
+  }
+});
+
+    </script>
+</head>
+<body>
+
+
+
+<div class="top-bar">
+    <!-- Left-Side Buttons Container -->
+    <div class="left-buttons">
+<button class="menu-button event" onclick="openSidebar()">EVENT</button>
+      <button class="menu-button credits">Credits</button>
+    </div>
+    <div class="center-text">Junya Watanabe Runway Archives 1993-2022</div>
+    <!-- Right-Aligned Buttons Container -->
+    <div class="right-buttons">
+      <button class="menu-button back">  <a href="gentle-monster-dheygere.html">Back</a> </button>
+      <button class="menu-button next"> <a href="junya-watanabe-runway.html">Next</a> </button>
+      <button class="menu-button navigate">How to Move?</button>
+    </div>   
+</div>
+<div id="index" class="indexbar">
+  <button class="index-close-btn" onclick="closeSidebar()">✖</button>
+  <p>Sidebar Content Goes Here</p>
+</div>
+  <!-- TOP BAR END -->
+  <!-- Title + Description + Line -->
+<div class="invite-fixed-left-text">INVITATION</div>
+
+<a href="junya-watanabe-runway.html" class="invite-fixed-text">
+  ENTER RUNWAY
+</a>
+<div class="invite-title-line"></div>
+
+    <a-scene>
+      
+      <a-assets gltf-model="dracoDecoderPath: https://www.gstatic.com/draco/v1/decoders/">
+     
+        <img id="doc" src="./Assets/junya-watanabe-intro/Junya-Doc.png">
+
+      <a-asset-item id="cabinet" src="./Assets/junya-watanabe-intro/cabinet.glb" ></a-asset-item> 
+      <a-asset-item id="card" src="./Assets/junya-watanabe-intro/black-card.gltf" ></a-asset-item> 
+      <a-asset-item id="envelope" src="./Assets/junya-watanabe-intro/envelope.glb" ></a-asset-item> 
+      <a-asset-item id="boxoutline" src="./Assets/junya-watanabe-intro/outline.glb" ></a-asset-item> 
+      <a-asset-item id="invitetext" src="./Assets/junya-watanabe-intro/text-invite.glb" ></a-asset-item> 
+      <a-asset-item id="paperclip" src="./Assets/junya-watanabe-intro/paperclip.glb" ></a-asset-item> 
+      <a-asset-item id="folder" src="./Assets/junya-watanabe-intro/folder.glb" ></a-asset-item> 
+       
+
+
+      </a-assets>
+<!-- SCENE  -->
+<a-light type="ambient" color="#ffffff" intensity="1"></a-light>
+<a-light type="directional" position="0 5 14" rotation="-30 -30 0" color="#ffffff" intensity="1"
+         cast-shadow="true" shadow-mapSize="2048 2048" shadow-camera-far="50"></a-light>
+
+<a-gltf-model src="#cabinet" scale= "10 10 10" position="0 0 -10" rotation="0 270 0"   
+></a-gltf-model>
+
+<a-gltf-model src="#envelope" scale= "11 11 11" position="-1.4 -0.258 -10.34" rotation="-15 270 0" 
+></a-gltf-model>
+
+<a-gltf-model src="#card" scale= "7.1 7.1 7.1 " position="0 6.1 -6.6" rotation="0 0 0" billboard-y 
+></a-gltf-model>
+<a-gltf-model src="#invitetext" scale= "7.1 7.1 7.1 " position="0 6.1 -6.5" rotation="0 0 0" billboard-y 
+></a-gltf-model>
+<a-gltf-model src="#boxoutline" scale= "7.1 7.1 7.1 " position="0 6.1 -6.55" rotation="0 0 0" billboard-y  
+></a-gltf-model>
+
+<a-gltf-model src="#folder" scale= "9.5 9.5 9.5" position="-4.67 3.88 -7" rotation="4 0 0" 
+></a-gltf-model>
+
+<a-image src="#doc" position="-4.1 3.9 -6.82" rotation="0 -8 0" width="1.3" height="1.75" ></a-image>
+
+<a-gltf-model src="#paperclip" scale= "4 4 4" position="-3.4 3.6 -6.73" rotation="-8 -60 0"
+></a-gltf-model>
+
+
+         
+           <a-sky color="#000"></a-sky>
+
+ <!-- Camera with WASD and custom Y-axis controls
+        <a-camera position="0 3 2.5" wasd-controls="fly: true; acceleration: 15" look-controls></a-camera> 
+
+         -->
+
+<!-- first test working vr Camera Rig for Both Desktop and VR 
+<a-entity id="rig" movement-controls="speed: 0.1;" universal-controls>
+  <a-entity camera look-controls="pointerLockEnabled: false" position="0 3 2.5" wasd-controls="fly: true; acceleration: 15">
+    <a-entity cursor="rayOrigin: mouse"></a-entity>
+  </a-entity>
+
+  <a-entity oculus-touch-controls="hand: left"></a-entity>
+
+  <a-entity oculus-touch-controls="hand: right"></a-entity>
+</a-entity>
+
+-->
+  <!-- Camera Rig with Custom Controls -->
+
+
+
+ <a-entity id="cameraRig" position="0 3 2.5">
+  <a-entity id="head" camera look-controls></a-entity>
+  <a-entity
+    id="leftHand"
+    hand-controls="hand: left"
+    oculus-touch-controls="hand: left"
+    smooth-locomotion="hand: left">
+  </a-entity>
+  <a-entity
+    id="rightHand"
+    hand-controls="hand: right"
+    oculus-touch-controls="hand: right"
+    smooth-locomotion="hand: right">
+  </a-entity>
+</a-entity>
+
+  </a-scene>
+  
+
+ 
+
+</body>
+</html>
