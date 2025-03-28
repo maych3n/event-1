@@ -16,48 +16,46 @@
 
 
     <script>
-     AFRAME.registerComponent('custom-controls', {
+  AFRAME.registerComponent('custom-controls', {
   init: function () {
     this.cameraRig = document.querySelector('#rig');
+    this.speed = 0.1;
+
+    // Attach listeners to the controllers
     this.leftController = document.querySelector('[oculus-touch-controls="hand: left"]');
     this.rightController = document.querySelector('[oculus-touch-controls="hand: right"]');
 
-    this.speed = 0.1;
-
-    // Listen for thumbstick movement on left and right controllers
-    this.leftController.addEventListener('thumbstickmoved', this.handleLeftThumbstick.bind(this));
-    this.rightController.addEventListener('thumbstickmoved', this.handleRightThumbstick.bind(this));
+    this.leftController.addEventListener('thumbstickmoved', (e) => this.handleYMovement(e));
+    this.rightController.addEventListener('thumbstickmoved', (e) => this.handleXZMovement(e));
   },
 
-  // Left Controller (Y-axis movement)
-  handleLeftThumbstick: function (event) {
+  // Move up and down using the left joystick
+  handleYMovement: function (event) {
     if (Math.abs(event.detail.y) > 0.1) {
-      const currentPosition = this.cameraRig.object3D.position;
       this.cameraRig.object3D.position.y += event.detail.y * this.speed;
     }
   },
 
-  // Right Controller (X and Z-axis movement)
-  handleRightThumbstick: function (event) {
+  // Move along the X and Z axes using the right joystick
+  handleXZMovement: function (event) {
     const direction = new THREE.Vector3();
     const rotation = this.cameraRig.object3D.rotation;
-    
+
     if (Math.abs(event.detail.x) > 0.1 || Math.abs(event.detail.y) > 0.1) {
-      // Calculate forward and right vectors based on camera rotation
+      // Calculate movement directions based on camera orientation
       direction.set(
         -Math.sin(rotation.y),
         0,
         -Math.cos(rotation.y)
       ).normalize();
-      
       const right = new THREE.Vector3().crossVectors(direction, new THREE.Vector3(0, 1, 0)).normalize();
 
-      // Move based on thumbstick input
       this.cameraRig.object3D.position.addScaledVector(direction, -event.detail.y * this.speed);
       this.cameraRig.object3D.position.addScaledVector(right, event.detail.x * this.speed);
     }
   }
 });
+
 
       </script>
 </head>
@@ -160,18 +158,16 @@
 
 
   <a-entity id="rig" movement-controls="speed: 0.1;" universal-controls custom-controls>
-    <!-- Camera with Desktop and VR Support -->
     <a-entity camera look-controls="pointerLockEnabled: false" position="0 3 2.5" wasd-controls="fly: true; acceleration: 15">
       <a-entity cursor="rayOrigin: mouse"></a-entity>
     </a-entity>
 
-    <!-- Left Hand Controller for VR (Y-axis Movement) -->
+    <!-- Left Hand Controller for Y-axis Movement -->
     <a-entity oculus-touch-controls="hand: left"></a-entity>
 
-    <!-- Right Hand Controller for VR (X and Z Movement) -->
+    <!-- Right Hand Controller for X/Z Movement -->
     <a-entity oculus-touch-controls="hand: right"></a-entity>
   </a-entity>
-  
   </a-scene>
   
 
