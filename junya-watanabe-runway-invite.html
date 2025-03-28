@@ -111,20 +111,24 @@
 
 -->
   <!-- Camera Rig with Custom Controls -->
-  <a-entity id="rig" movement-controls="speed: 0.1;" universal-controls>
+
+  <!-- Camera Rig with Movement and Joystick Controls -->
+  <a-entity id="rig" movement-controls="speed: 0.1;" universal-controls custom-joystick-controls>
     <!-- Camera with WASD for Desktop and Look-Controls for VR -->
     <a-entity camera look-controls="pointerLockEnabled: false" position="0 3 2.5" wasd-controls="fly: true; acceleration: 15">
       <a-entity cursor="rayOrigin: mouse"></a-entity>
     </a-entity>
 
-    <!-- Left Hand Controller for VR - Controls Y Movement -->
-    <a-entity id="leftController" oculus-touch-controls="hand: left" left-joystick-y-movement></a-entity>
+    <!-- Left Hand Controller for VR (Y-axis Flying) -->
+    <a-entity oculus-touch-controls="hand: left"></a-entity>
 
-    <!-- Right Hand Controller for VR - Controls Position Movement -->
-    <a-entity id="rightController" oculus-touch-controls="hand: right" right-joystick-position-movement></a-entity>
+    <!-- Right Hand Controller for VR (X and Z Movement) -->
+    <a-entity oculus-touch-controls="hand: right"></a-entity>
   </a-entity>
+  </a-scene>
   
-    </a-scene>
+
+ 
 
 </body>
 </html>

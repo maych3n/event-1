@@ -10,49 +10,41 @@ function buttonClicked() {
 }
 
 // VR code
-AFRAME.registerComponent('left-joystick-y-movement', {
-    tick: function () {
-      const controller = this.el;
-      const rig = document.getElementById('rig');
-      const axis = controller.components['oculus-touch-controls']?.axis;
+AFRAME.registerComponent('custom-joystick-controls', {
+    init: function () {
+      this.cameraRig = document.getElementById('rig');
+      this.leftJoystickY = 0;
+      this.rightJoystickX = 0;
+      this.rightJoystickY = 0;
   
-      if (axis && axis.length >= 2) {
-        const yMovement = axis[1] * 0.1; // Adjust the speed with this multiplier
-        const rigPosition = rig.getAttribute('position');
-        rig.setAttribute('position', {
-          x: rigPosition.x,
-          y: rigPosition.y + yMovement,
-          z: rigPosition.z
-        });
-      }
+      // Left Controller (Y-Axis Flying)
+      this.el.sceneEl.addEventListener('axismove', (event) => {
+        if (event.target.components['oculus-touch-controls']?.data.hand === 'left') {
+          this.leftJoystickY = event.detail.axis[1]; // Up/Down on Y-Axis
+        }
+      });
+  
+      // Right Controller (X and Z Movement)
+      this.el.sceneEl.addEventListener('axismove', (event) => {
+        if (event.target.components['oculus-touch-controls']?.data.hand === 'right') {
+          this.rightJoystickX = event.detail.axis[0]; // Left/Right on X-Axis
+          this.rightJoystickY = event.detail.axis[1]; // Forward/Backward on Z-Axis
+        }
+      });
+    },
+  
+    tick: function (time, timeDelta) {
+      const speed = 0.05; // Adjust for faster/slower movement
+      const position = this.cameraRig.getAttribute('position');
+  
+      // Adjust the Y-axis using the left joystick
+      position.y += this.leftJoystickY * speed;
+  
+      // Adjust X and Z axis using the right joystick
+      position.x += this.rightJoystickX * speed;
+      position.z += this.rightJoystickY * speed;
+  
+      this.cameraRig.setAttribute('position', position);
     }
   });
   
-  AFRAME.registerComponent('right-joystick-position-movement', {
-    tick: function () {
-      const controller = this.el;
-      const rig = document.getElementById('rig');
-      const axis = controller.components['oculus-touch-controls']?.axis;
-      const camera = document.querySelector('[camera]');
-      
-      if (axis && axis.length >= 2) {
-        const forwardMovement = axis[1] * 0.1; // Z-axis movement
-        const strafeMovement = axis[0] * 0.1; // X-axis movement
-        
-        const cameraRotation = camera.getAttribute('rotation').y * (Math.PI / 180);
-        const sinY = Math.sin(cameraRotation);
-        const cosY = Math.cos(cameraRotation);
-  
-        // Move in the direction the camera is facing
-        const deltaX = (forwardMovement * sinY) + (strafeMovement * cosY);
-        const deltaZ = (forwardMovement * cosY) - (strafeMovement * sinY);
-  
-        const rigPosition = rig.getAttribute('position');
-        rig.setAttribute('position', {
-          x: rigPosition.x + deltaX,
-          y: rigPosition.y,
-          z: rigPosition.z + deltaZ
-        });
-      }
-    }
-  });
