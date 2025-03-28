@@ -16,56 +16,33 @@
 
 
     <script>
-AFRAME.registerComponent('smooth-locomotion', {
-  schema: {
-    hand: {type: 'string', default: 'left'},
-    speed: {type: 'number', default: 0.1},
-    fly: {type: 'boolean', default: true}
-  },
-
-  init: function () {
-    this.controller = null;
-    this.cameraRig = document.getElementById('cameraRig');
-  },
-
-  tick: function () {
-    if (!this.controller) {
-      const controllers = Array.from(navigator.getGamepads()).filter(gamepad => gamepad && gamepad.id.includes('Oculus Touch'));
-      if (controllers.length) {
-        this.controller = controllers[this.data.hand === 'left' ? 0 : 1];
-      }
-    }
-
-    if (this.controller) {
-      const axis = this.controller.axes;
-      const moveX = axis[0] * this.data.speed;
-      const moveZ = axis[1] * this.data.speed;
-
-      // Handle Flying with Right Thumbstick (Index 3 for Y-axis on Oculus)
-      const flyY = this.data.fly && this.controller.axes[3] ? this.controller.axes[3] * this.data.speed : 0;
-
-      // Calculate movement direction based on camera facing
-      const camera = document.getElementById('head').object3D;
-      const forward = new THREE.Vector3();
-      camera.getWorldDirection(forward);
-      forward.y = 0;
-      forward.normalize();
-
-      const strafe = new THREE.Vector3();
-      strafe.crossVectors(new THREE.Vector3(0, 1, 0), forward);
-
-      // Apply movement
-      this.cameraRig.object3D.position.addScaledVector(forward, -moveZ);
-      this.cameraRig.object3D.position.addScaledVector(strafe, moveX);
-      this.cameraRig.object3D.position.y += flyY;
-    }
-  }
-});
-
-console.log(navigator.getGamepads());
-
-
-    </script>
+      AFRAME.registerComponent('custom-controls', {
+        init: function () {
+          const rig = this.el;
+          const leftController = document.querySelector('[oculus-touch-controls="hand: left"]');
+          const rightController = document.querySelector('[oculus-touch-controls="hand: right"]');
+          const camera = document.querySelector('a-entity[camera]');
+      
+          // Enable thumbstick movement for Y-axis (left controller)
+          leftController.addEventListener('thumbstickmoved', (e) => {
+            if (e.detail.y) {
+              rig.object3D.position.y += e.detail.y * -0.1;
+            }
+          });
+      
+          // Enable thumbstick movement for X and Z axes (right controller)
+          rightController.addEventListener('thumbstickmoved', (e) => {
+            if (e.detail.x || e.detail.y) {
+              rig.object3D.position.x += e.detail.x * 0.1;
+              rig.object3D.position.z += e.detail.y * 0.1;
+            }
+          });
+      
+          // Ensure WASD controls work on desktop
+          camera.setAttribute('wasd-controls', 'fly: true; acceleration: 15');
+        }
+      });
+      </script>
 </head>
 <body>
 
@@ -166,10 +143,17 @@ console.log(navigator.getGamepads());
 
 
 
-  <a-entity id="cameraRig" position="0 3 2.5">
-    <a-entity id="head" camera look-controls wasd-controls="fly: true; acceleration: 15"></a-entity>
-    <a-entity id="leftHand" hand-controls="hand: left" oculus-touch-controls="hand: left" smooth-locomotion="hand: left"></a-entity>
-    <a-entity id="rightHand" hand-controls="hand: right" oculus-touch-controls="hand: right" smooth-locomotion="hand: right"></a-entity>
+  <a-entity id="rig" movement-controls="speed: 0.1;" universal-controls custom-controls>
+    <!-- Camera with Look-Controls and WASD Controls for Desktop -->
+    <a-entity camera look-controls="pointerLockEnabled: false" position="0 3 2.5" wasd-controls="fly: true; acceleration: 15">
+      <a-entity cursor="rayOrigin: mouse"></a-entity>
+    </a-entity>
+  
+    <!-- Left Hand Controller for VR (Y-axis Movement) -->
+    <a-entity oculus-touch-controls="hand: left" thumbstick-controls="axis: y"></a-entity>
+  
+    <!-- Right Hand Controller for VR (X and Z Movement) -->
+    <a-entity oculus-touch-controls="hand: right" thumbstick-controls="axis: xz"></a-entity>
   </a-entity>
   
   </a-scene>
