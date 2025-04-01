@@ -37,10 +37,19 @@
     <span id="countdown-text-triple"></span><!-- Extra instance for overlap -->
   </div>
 
+<a-scene networked-scene="room: my-room; adapter: socketio;">
+    <a-entity networked="template:#avatar-template; attachTemplateToLocal:true"></a-entity>
+</a-scene>
+<template id="avatar-template">
+    <a-entity>
+        <a-box color="blue" depth="0.3" height="0.5" width="0.3"></a-box>
+    </a-entity>
+</template>
 
 
    
-
+<script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+<script src="https://unpkg.com/networked-aframe/dist/networked-aframe.min.js"></script>
 </body>
 
 </html>
