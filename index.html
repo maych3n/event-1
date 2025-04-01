@@ -11,6 +11,8 @@
     <script src="scripts.js" defer></script>
     <script src="index.js" defer></script>
     <link rel="icon" type="image/x-icon" href="Assets/landing/favicon.ico">
+    <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
+  <script src="https://networked-aframe.io/networked-aframe.min.js"></script>
 </head>
 
 <body>
@@ -36,6 +38,16 @@
     <span id="countdown-text-duplicate"></span>
     <span id="countdown-text-triple"></span><!-- Extra instance for overlap -->
   </div>
+
+   <a-scene networked-scene="room: my-room; adapter: socketio;">
+    <a-entity networked="template:#avatar-template; attachTemplateToLocal:true"></a-entity>
+</a-scene>
+
+    <template id="avatar-template">
+    <a-entity>
+        <a-box color="blue" depth="0.3" height="0.5" width="0.3"></a-box>
+    </a-entity>
+</template>
 </body>
 
 </html>
