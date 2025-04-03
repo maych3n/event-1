@@ -1,0 +1,13 @@
+{
+  "name": "event-multiplayer",
+  "version": "1.0.0",
+  "description": "Multiplayer for EVENT worlds",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "socket.io": "^2.3.0"
+  }
+}
