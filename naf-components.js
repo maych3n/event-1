@@ -76,21 +76,6 @@ AFRAME.registerComponent('gltf-avatar', {
     textBackground.setAttribute('width', '2')
     textBackground.setAttribute('position', '0 0 -0.01') // Slightly behind text
 
-    // Add the text label with better visibility
-    const textLabel = document.createElement('a-text')
-    textLabel.setAttribute('value', this.data.userName)
-    textLabel.setAttribute('align', 'center')
-    textLabel.setAttribute('color', '#FFFFFF') // White text for contrast
-    textLabel.setAttribute('scale', '1 1 1')
-    textLabel.setAttribute('width', '4')
-    textLabel.setAttribute('side', 'double') // Visible from both sides
-
-    // Add text and background to text entity
-    textEntity.appendChild(textBackground)
-    textEntity.appendChild(textLabel)
-
-    // Make text always face the camera
-    textEntity.setAttribute('look-at', '[camera]')
 
     // Add floating animation to the avatar container - adjust for Marc Jacobs
     let floatFrom = '0 1.5 0'
